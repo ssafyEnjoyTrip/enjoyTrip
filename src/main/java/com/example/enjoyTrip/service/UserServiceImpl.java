@@ -1,5 +1,5 @@
 package com.example.enjoyTrip.service;
 
-public interface UserService {
+public class UserServiceImpl {
 
 }
