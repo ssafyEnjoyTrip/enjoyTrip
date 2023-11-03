@@ -11,4 +11,5 @@ public class MainController {
 	public String main() {
 		return "index.html";
 	}
+	// 메인 컨틀로러 만들었땅
 }
