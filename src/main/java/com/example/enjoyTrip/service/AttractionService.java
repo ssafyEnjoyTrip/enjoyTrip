@@ -11,4 +11,5 @@ public interface AttractionService {
 	int update(AttractionDto Dto);
 	int delete(int contentId);
 	List<AttractionDto> sortByReadCount();
+	List<AttractionDto> sortByCreatedTime();
 }
