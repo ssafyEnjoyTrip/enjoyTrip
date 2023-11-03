@@ -7,6 +7,6 @@
     </settings>
     
     <mappers>
-    	<mapper resource="mappers/user_query.xml"/>
+    	<mapper resource="mappers/attraction_query.xml"/>
     </mappers>
 </configuration>

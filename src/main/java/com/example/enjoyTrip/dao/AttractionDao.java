@@ -1,10 +1,13 @@
-package com.example.enjoyTrip.service;
+package com.example.enjoyTrip.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Mapper;
+
 import com.example.enjoyTrip.dto.AttractionDto;
 
-public interface AttractionService {
+@Mapper
+public interface AttractionDao {
 	List<AttractionDto> list();
 	List<AttractionDto> search(String keyword);
 	AttractionDto detail(int contentId);

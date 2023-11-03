@@ -1,5 +1,5 @@
 package com.example.enjoyTrip.dao;
 
-public class UserDao {
+public interface UserDao {
 
 }
