@@ -11,8 +11,4 @@ public class MainController {
 	public String main() {
 		return "index.html";
 	}
-	@GetMapping("/")
-	public String jongkook() {
-		return "jongkook.html";
-	}
 }
