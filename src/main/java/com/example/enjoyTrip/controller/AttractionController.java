@@ -16,7 +16,6 @@ import com.example.enjoyTrip.service.AttractionService;
 @RequestMapping("/attraction")
 public class AttractionController {
 	
-	
 	private final AttractionService service;
 	
 	public AttractionController(AttractionService service) {
