@@ -2,7 +2,7 @@
 	
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.enjoyTrip.dao.AttractionDao">
-	<select id="detail" parameterType="com.example.enjoyTrip.dto.AttractionDto">
+	<select id="detail" parameterType="int">
 		select des.content_id, des.overview,
 			 de.created_time, de.modified_time,
 			 inf.readcount, inf.tel, inf.first_image, inf.first_image2
@@ -11,14 +11,14 @@
 			 using(content_id) where inf.content_id = #{contentId};
 	</select>
 	
-<!-- 	<select id="sortByReadCount" parameterType="com.example.enjoyTrip.dto.AttractionDto">
+	<select id="sortByReadCount" parameterType="com.example.enjoyTrip.dto.AttractionDto">
 		select des.content_id, des.overview,
 			 de.created_time, de.modified_time,
 			 inf.readcount, inf.tel, inf.first_image, inf.first_image2
 	 	from attraction_description as des join attraction_detail as de 
 			 using(content_id) join attraction_info as inf
 			 using(content_id) order by readcount desc
-	</select> -->
+	</select> 
 	
 	<!-- return이 Collections 이면 Dto만 기술 -> 리턴타입에 List 안와도 됨 -->
 	<select id="list" resultType="com.example.enjoyTrip.dto.AttractionDto">

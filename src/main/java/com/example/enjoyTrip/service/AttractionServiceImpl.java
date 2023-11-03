@@ -41,4 +41,9 @@ public class AttractionServiceImpl implements AttractionService{
 		return dao.delete(contentId);
 	}
 
+	@Override
+	public List<AttractionDto> sortByReadCount() {
+		return dao.sortByReadCount();
+	}
+
 }
