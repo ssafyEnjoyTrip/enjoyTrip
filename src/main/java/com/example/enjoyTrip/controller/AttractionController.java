@@ -34,7 +34,7 @@ public class AttractionController {
 	}
 	
 	@GetMapping("/{contentId}")
-	public AttractionDto detail(@PathVariable int contentId, AttractionDto dto) {
+	public AttractionDto detail(@PathVariable int contentId) {
 		return service.detail(contentId);
 	}
 	
@@ -50,4 +50,8 @@ public class AttractionController {
 		return result == 1 ? "삭제가 성공적으로 완료되었습니다," : "삭제가 되지 않았습니다.";
 	}
 	
+	@GetMapping("/byReadCount")
+	public List<AttractionDto> sortByReadCount() {
+		return service.sortByReadCount();
+	}
 }
