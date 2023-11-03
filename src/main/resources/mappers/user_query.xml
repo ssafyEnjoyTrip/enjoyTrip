@@ -28,5 +28,10 @@
 		delete from user where user_id = #{userId}
 	</delete>
 	
+	<!-- 로그인 체크 -->
+	<select id="loginCheck" parameterType="com.example.enjoyTrip.dto.UserDto" resultType="com.example.enjoyTrip.dto.UserDto">
+		select user_id, user_password, user_email, user_name, user_age
+		from user where user_id = #{userId} and user_password = #{userPassword}
+	</select>
 	
 </mapper>

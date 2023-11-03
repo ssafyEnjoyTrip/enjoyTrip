@@ -7,14 +7,20 @@ import org.springframework.stereotype.Service;
 import com.example.enjoyTrip.dao.UserDao;
 import com.example.enjoyTrip.dto.UserDto;
 
+import lombok.RequiredArgsConstructor;
+
 @Service
+@RequiredArgsConstructor
 public class UserServiceImpl implements UserService{
 
-	UserDao dao;
+	private final UserDao dao;
 	
-	public UserServiceImpl(UserDao dao) {
-		this.dao = dao;
+	@Override
+	public UserDto loginCheck(UserDto dto) {
+		
+		return dao.loginCheck(dto);
 	}
+	
 
 	@Override
 	public List<UserDto> userList() {
@@ -40,5 +46,7 @@ public class UserServiceImpl implements UserService{
 	public int userDelete(String userId) {
 		return dao.userDelete(userId);
 	}
+
+	
 
 }

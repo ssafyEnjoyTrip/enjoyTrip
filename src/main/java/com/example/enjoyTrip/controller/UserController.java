@@ -15,16 +15,16 @@ import com.example.enjoyTrip.dto.AttractionDto;
 import com.example.enjoyTrip.dto.UserDto;
 import com.example.enjoyTrip.service.UserService;
 
+import lombok.RequiredArgsConstructor;
+
 @RestController
 @RequestMapping("/users")
+@RequiredArgsConstructor
 public class UserController {
 	
-	UserService service;
+	private final UserService service;
 	
-	public UserController(UserService service) {
-		this.service = service;
-	}
-
+	
 	@GetMapping("/")
 	public List<UserDto> list() {
 		return service.userList();
