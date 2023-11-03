@@ -1,13 +1,10 @@
-package com.example.enjoyTrip.dao;
+package com.example.enjoyTrip.service;
 
 import java.util.List;
 
-import org.apache.ibatis.annotations.Mapper;
-
 import com.example.enjoyTrip.dto.ArticleDto;
 
-@Mapper
-public interface ArticleDao {
+public interface ArticleService {
 
 	List<ArticleDto> articleList();
 	ArticleDto articleDetail(int articleId); // 상세

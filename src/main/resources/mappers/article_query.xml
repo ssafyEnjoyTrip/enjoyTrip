@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+	
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.enjoyTrip.dao.ArticleDao">
+	<select id="articleDetail" parameterType="int" resultType="com.example.enjoyTrip.dto.ArticleDto">
+		select article_id, user_id, title, register_time, comments_count, content
+		from article where article_id = #{articleId}
+	</select>
+	
+	<!-- return이 Collections 이면 Dto만 기술 -> 리턴타입에 List 안와도 됨 -->
+	<select id="articleList" resultType="com.example.enjoyTrip.dto.ArticleDto">
+		select article_id, user_id, title, register_time, comments_count, content
+		from article
+	</select>
+	
+	<!-- return이 primitive 타입 이면 별도로 기술할 필요가 없다. (int) -->
+	<insert id="articleInsert" parameterType="com.example.enjoyTrip.dto.ArticleDto">
+		insert into article (user_id, title, register_time, comments_count, content)
+		values(#{userId},#{title},now(),#{commentsCount},#{content})
+	</insert>
+	
+	<update id="articleUpdate" parameterType="com.example.enjoyTrip.dto.ArticleDto">
+		update article set title=#{title}, register_time=#{registerTime}, content=#{content}
+		where article_id = #{articleId}
+	</update>
+	
+	<delete id="articleDelete" parameterType="int">
+		delete from article where article_id = #{articleId}
+	</delete>
+	
+	
+</mapper>
