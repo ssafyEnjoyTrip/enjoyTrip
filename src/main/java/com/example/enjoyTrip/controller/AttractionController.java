@@ -54,4 +54,9 @@ public class AttractionController {
 	public List<AttractionDto> sortByReadCount() {
 		return service.sortByReadCount();
 	}
+	
+	@GetMapping("/byCreatedTime")
+	public List<AttractionDto> sortByCreatedTime() {
+		return service.sortByReadCount();
+	}
 }

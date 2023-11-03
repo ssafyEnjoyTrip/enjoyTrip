@@ -46,4 +46,13 @@ public class AttractionServiceImpl implements AttractionService{
 		return dao.sortByReadCount();
 	}
 
+	@Override
+	public List<AttractionDto> sortByCreatedTime() {
+		List<AttractionDto> list = dao.sortByCreatedTime();
+		for(AttractionDto dto : list) {
+			dto.setCreatedTime(dto.getCreatedTime().substring(0, 6));
+		}
+		return list;
+	}
+
 }

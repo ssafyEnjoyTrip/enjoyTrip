@@ -14,4 +14,5 @@ public interface AttractionDao {
 	int update(AttractionDto Dto);
 	int delete(int contentId);
 	List<AttractionDto> sortByReadCount();
+	List<AttractionDto> sortByCreatedTime();
 }
