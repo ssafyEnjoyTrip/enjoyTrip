@@ -39,13 +39,15 @@ public class AttractionController {
 	}
 	
 	@PutMapping("/{contentId}")
-	public int update(@PathVariable int contentId, AttractionDto dto) {
-		return service.update(dto);
+	public String update(@PathVariable int contentId, AttractionDto dto) {
+		int result = service.update(dto);		
+		return result == 1 ? "성공적으로 업데이트 되었습니다." : "업데이트가 실패하였습니다.";
 	}
 	
 	@DeleteMapping("/{contentId}")
-	public int delete(@PathVariable int contentId) {
-		return service.delete(contentId);
+	public String delete(@PathVariable int contentId) {
+		int result = service.delete(contentId);		
+		return result == 1 ? "삭제가 성공적으로 완료되었습니다," : "삭제가 되지 않았습니다.";
 	}
 	
 }
