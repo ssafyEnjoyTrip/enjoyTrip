@@ -19,43 +19,47 @@ import com.example.enjoyTrip.service.UserService;
 @RequestMapping("/users")
 public class UserController {
 	
-	@Autowired
 	UserService service;
 	
+	public UserController(UserService service) {
+		this.service = service;
+	}
+
 	@GetMapping("/")
-	public String test() {
-		return null	;
+	public List<UserDto> list() {
+		return service.userList();
+	}
+	
+	@GetMapping("/{userId}")
+	public UserDto detail(@PathVariable String userId) {
+		return service.userDetail(userId);
 	}
 	
 	@PostMapping("/")
 	public int insert(UserDto dto) {
-//		return service.insert(dto);
-		return 1;
+		return service.userInsert(dto);
 	}
 	
 	@PutMapping("/{userId}")
-	public int update(@PathVariable int userId, UserDto dto) {
-//		return service.update(dto);
-		return 1;
+	public int update(@PathVariable String userId, UserDto dto) {
+		return service.userUpdate(dto);
 	}
 	
 	@DeleteMapping("/{userId}")
-	public int delete(@PathVariable int userId) {
-//		return service.delete(userId);
-		return 1;
+	public int delete(@PathVariable String userId) {
+		return service.userDelete(userId);
 	}
 	
-	@GetMapping("/likeList")
-	public List<AttractionDto> likeList(int userId){
-//		List<AttractionDto> aList = service.likeList(userId);
-		return null;
-	}
+//	@GetMapping("/likeList")
+//	public List<AttractionDto> likeList(int userId){
+//		return ;
+//	}
 	
-	@GetMapping("/subscribeList")
-	public List<AttractionDto> subscribeList(int userId){
-//		List<AttractionDto> aList = service.subscribeList;
-		return null;
-	}
+//	@GetMapping("/subscribeList")
+//	public List<AttractionDto> subscribeList(int userId){
+////		List<AttractionDto> aList = service.subscribeList;
+//		return null;
+//	}
 	
 	
 	
