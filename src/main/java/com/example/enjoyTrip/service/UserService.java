@@ -10,5 +10,5 @@ public interface UserService {
 	int userInsert(UserDto dto); // 등록
 	int userUpdate(UserDto dto); // 수정
 	int userDelete(String userId); // 삭제
-
+	UserDto loginCheck(UserDto dto);
 }
