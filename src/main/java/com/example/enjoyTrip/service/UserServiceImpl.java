@@ -23,4 +23,9 @@ public class UserServiceImpl implements UserService {
     public User detail(int userId) {
         return userRepository.findById(userId).orElse(null);
     }
+
+    @Override
+    public List<User> findByNameLike(String keyword) {
+        return userRepository.findByNameLike(keyword);
+    }
 }

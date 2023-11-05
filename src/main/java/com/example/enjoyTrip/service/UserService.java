@@ -8,5 +8,5 @@ public interface UserService {
 
     List<User> list();
     User detail(int memberId);
-
+    List<User> findByNameLike(String keyword);
 }
