@@ -1,6 +1,7 @@
 package com.example.enjoyTrip.entity;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
 public class Heart {
@@ -43,21 +44,12 @@ public class Heart {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         Heart heart = (Heart) o;
-
-        if (heartId != heart.heartId) return false;
-        if (memberId != heart.memberId) return false;
-        if (contentId != heart.contentId) return false;
-
-        return true;
+        return heartId == heart.heartId && memberId == heart.memberId && contentId == heart.contentId;
     }
 
     @Override
     public int hashCode() {
-        int result = heartId;
-        result = 31 * result + memberId;
-        result = 31 * result + contentId;
-        return result;
+        return Objects.hash(heartId, memberId, contentId);
     }
 }

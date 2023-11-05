@@ -6,16 +6,17 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.Objects;
 
 @Entity
+@javax.persistence.Table(name = "attraction_info", schema = "enjoytrip", catalog = "")
 @Getter
 @Setter
 @EqualsAndHashCode
-@Table(name = "attraction_info", schema = "enjoytrip", catalog = "")
 public class AttractionInfo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @Column(name = "content_id")
+    @javax.persistence.Column(name = "content_id")
     private int contentId;
     @Basic
     @Column(name = "content_type_id")
