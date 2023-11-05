@@ -1,6 +1,5 @@
 package com.example.enjoyTrip.service;
 
-import com.example.enjoyTrip.dto.AttractionDto;
 import com.example.enjoyTrip.entity.AttractionDetail;
 import com.example.enjoyTrip.repository.AttractionRepository;
 import lombok.RequiredArgsConstructor;

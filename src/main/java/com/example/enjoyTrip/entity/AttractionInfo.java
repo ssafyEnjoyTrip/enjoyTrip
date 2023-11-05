@@ -2,56 +2,15 @@ package com.example.enjoyTrip.entity;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.Objects;
 
 @Entity
-@Table(name = "attraction_info", schema = "enjoytrip", catalog = "")
+@javax.persistence.Table(name = "attraction_info", schema = "enjoytrip", catalog = "")
 public class AttractionInfo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @Column(name = "content_id")
+    @javax.persistence.Column(name = "content_id")
     private int contentId;
-    @Basic
-    @Column(name = "content_type_id")
-    private Integer contentTypeId;
-    @Basic
-    @Column(name = "title")
-    private String title;
-    @Basic
-    @Column(name = "addr1")
-    private String addr1;
-    @Basic
-    @Column(name = "addr2")
-    private String addr2;
-    @Basic
-    @Column(name = "zipcode")
-    private String zipcode;
-    @Basic
-    @Column(name = "tel")
-    private String tel;
-    @Basic
-    @Column(name = "first_image")
-    private String firstImage;
-    @Basic
-    @Column(name = "first_image2")
-    private String firstImage2;
-    @Basic
-    @Column(name = "readcount")
-    private Integer readcount;
-    @Basic
-    @Column(name = "sido_code")
-    private Integer sidoCode;
-    @Basic
-    @Column(name = "gugun_code")
-    private Integer gugunCode;
-    @Basic
-    @Column(name = "latitude")
-    private BigDecimal latitude;
-    @Basic
-    @Column(name = "longitude")
-    private BigDecimal longitude;
-    @Basic
-    @Column(name = "mlevel")
-    private String mlevel;
 
     public int getContentId() {
         return contentId;
@@ -61,6 +20,10 @@ public class AttractionInfo {
         this.contentId = contentId;
     }
 
+    @Basic
+    @Column(name = "content_type_id")
+    private Integer contentTypeId;
+
     public Integer getContentTypeId() {
         return contentTypeId;
     }
@@ -68,6 +31,10 @@ public class AttractionInfo {
     public void setContentTypeId(Integer contentTypeId) {
         this.contentTypeId = contentTypeId;
     }
+
+    @Basic
+    @Column(name = "title")
+    private String title;
 
     public String getTitle() {
         return title;
@@ -77,6 +44,10 @@ public class AttractionInfo {
         this.title = title;
     }
 
+    @Basic
+    @Column(name = "addr1")
+    private String addr1;
+
     public String getAddr1() {
         return addr1;
     }
@@ -84,6 +55,10 @@ public class AttractionInfo {
     public void setAddr1(String addr1) {
         this.addr1 = addr1;
     }
+
+    @Basic
+    @Column(name = "addr2")
+    private String addr2;
 
     public String getAddr2() {
         return addr2;
@@ -93,6 +68,10 @@ public class AttractionInfo {
         this.addr2 = addr2;
     }
 
+    @Basic
+    @Column(name = "zipcode")
+    private String zipcode;
+
     public String getZipcode() {
         return zipcode;
     }
@@ -100,6 +79,10 @@ public class AttractionInfo {
     public void setZipcode(String zipcode) {
         this.zipcode = zipcode;
     }
+
+    @Basic
+    @Column(name = "tel")
+    private String tel;
 
     public String getTel() {
         return tel;
@@ -109,6 +92,10 @@ public class AttractionInfo {
         this.tel = tel;
     }
 
+    @Basic
+    @Column(name = "first_image")
+    private String firstImage;
+
     public String getFirstImage() {
         return firstImage;
     }
@@ -116,6 +103,10 @@ public class AttractionInfo {
     public void setFirstImage(String firstImage) {
         this.firstImage = firstImage;
     }
+
+    @Basic
+    @Column(name = "first_image2")
+    private String firstImage2;
 
     public String getFirstImage2() {
         return firstImage2;
@@ -125,6 +116,10 @@ public class AttractionInfo {
         this.firstImage2 = firstImage2;
     }
 
+    @Basic
+    @Column(name = "readcount")
+    private Integer readcount;
+
     public Integer getReadcount() {
         return readcount;
     }
@@ -132,6 +127,10 @@ public class AttractionInfo {
     public void setReadcount(Integer readcount) {
         this.readcount = readcount;
     }
+
+    @Basic
+    @Column(name = "sido_code")
+    private Integer sidoCode;
 
     public Integer getSidoCode() {
         return sidoCode;
@@ -141,6 +140,10 @@ public class AttractionInfo {
         this.sidoCode = sidoCode;
     }
 
+    @Basic
+    @Column(name = "gugun_code")
+    private Integer gugunCode;
+
     public Integer getGugunCode() {
         return gugunCode;
     }
@@ -148,6 +151,10 @@ public class AttractionInfo {
     public void setGugunCode(Integer gugunCode) {
         this.gugunCode = gugunCode;
     }
+
+    @Basic
+    @Column(name = "latitude")
+    private BigDecimal latitude;
 
     public BigDecimal getLatitude() {
         return latitude;
@@ -157,6 +164,10 @@ public class AttractionInfo {
         this.latitude = latitude;
     }
 
+    @Basic
+    @Column(name = "longitude")
+    private BigDecimal longitude;
+
     public BigDecimal getLongitude() {
         return longitude;
     }
@@ -164,6 +175,10 @@ public class AttractionInfo {
     public void setLongitude(BigDecimal longitude) {
         this.longitude = longitude;
     }
+
+    @Basic
+    @Column(name = "mlevel")
+    private String mlevel;
 
     public String getMlevel() {
         return mlevel;
@@ -177,46 +192,12 @@ public class AttractionInfo {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         AttractionInfo that = (AttractionInfo) o;
-
-        if (contentId != that.contentId) return false;
-        if (contentTypeId != null ? !contentTypeId.equals(that.contentTypeId) : that.contentTypeId != null)
-            return false;
-        if (title != null ? !title.equals(that.title) : that.title != null) return false;
-        if (addr1 != null ? !addr1.equals(that.addr1) : that.addr1 != null) return false;
-        if (addr2 != null ? !addr2.equals(that.addr2) : that.addr2 != null) return false;
-        if (zipcode != null ? !zipcode.equals(that.zipcode) : that.zipcode != null) return false;
-        if (tel != null ? !tel.equals(that.tel) : that.tel != null) return false;
-        if (firstImage != null ? !firstImage.equals(that.firstImage) : that.firstImage != null) return false;
-        if (firstImage2 != null ? !firstImage2.equals(that.firstImage2) : that.firstImage2 != null) return false;
-        if (readcount != null ? !readcount.equals(that.readcount) : that.readcount != null) return false;
-        if (sidoCode != null ? !sidoCode.equals(that.sidoCode) : that.sidoCode != null) return false;
-        if (gugunCode != null ? !gugunCode.equals(that.gugunCode) : that.gugunCode != null) return false;
-        if (latitude != null ? !latitude.equals(that.latitude) : that.latitude != null) return false;
-        if (longitude != null ? !longitude.equals(that.longitude) : that.longitude != null) return false;
-        if (mlevel != null ? !mlevel.equals(that.mlevel) : that.mlevel != null) return false;
-
-        return true;
+        return contentId == that.contentId && Objects.equals(contentTypeId, that.contentTypeId) && Objects.equals(title, that.title) && Objects.equals(addr1, that.addr1) && Objects.equals(addr2, that.addr2) && Objects.equals(zipcode, that.zipcode) && Objects.equals(tel, that.tel) && Objects.equals(firstImage, that.firstImage) && Objects.equals(firstImage2, that.firstImage2) && Objects.equals(readcount, that.readcount) && Objects.equals(sidoCode, that.sidoCode) && Objects.equals(gugunCode, that.gugunCode) && Objects.equals(latitude, that.latitude) && Objects.equals(longitude, that.longitude) && Objects.equals(mlevel, that.mlevel);
     }
 
     @Override
     public int hashCode() {
-        int result = contentId;
-        result = 31 * result + (contentTypeId != null ? contentTypeId.hashCode() : 0);
-        result = 31 * result + (title != null ? title.hashCode() : 0);
-        result = 31 * result + (addr1 != null ? addr1.hashCode() : 0);
-        result = 31 * result + (addr2 != null ? addr2.hashCode() : 0);
-        result = 31 * result + (zipcode != null ? zipcode.hashCode() : 0);
-        result = 31 * result + (tel != null ? tel.hashCode() : 0);
-        result = 31 * result + (firstImage != null ? firstImage.hashCode() : 0);
-        result = 31 * result + (firstImage2 != null ? firstImage2.hashCode() : 0);
-        result = 31 * result + (readcount != null ? readcount.hashCode() : 0);
-        result = 31 * result + (sidoCode != null ? sidoCode.hashCode() : 0);
-        result = 31 * result + (gugunCode != null ? gugunCode.hashCode() : 0);
-        result = 31 * result + (latitude != null ? latitude.hashCode() : 0);
-        result = 31 * result + (longitude != null ? longitude.hashCode() : 0);
-        result = 31 * result + (mlevel != null ? mlevel.hashCode() : 0);
-        return result;
+        return Objects.hash(contentId, contentTypeId, title, addr1, addr2, zipcode, tel, firstImage, firstImage2, readcount, sidoCode, gugunCode, latitude, longitude, mlevel);
     }
 }

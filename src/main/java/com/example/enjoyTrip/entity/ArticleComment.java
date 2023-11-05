@@ -1,23 +1,15 @@
 package com.example.enjoyTrip.entity;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
-@Table(name = "article_comment", schema = "enjoytrip", catalog = "")
+@javax.persistence.Table(name = "article_comment", schema = "enjoytrip", catalog = "")
 public class ArticleComment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @Column(name = "comment_id")
+    @javax.persistence.Column(name = "comment_id")
     private int commentId;
-    @Basic
-    @Column(name = "article_id")
-    private int articleId;
-    @Basic
-    @Column(name = "member_id")
-    private int memberId;
-    @Basic
-    @Column(name = "comment")
-    private String comment;
 
     public int getCommentId() {
         return commentId;
@@ -27,6 +19,10 @@ public class ArticleComment {
         this.commentId = commentId;
     }
 
+    @Basic
+    @Column(name = "article_id")
+    private int articleId;
+
     public int getArticleId() {
         return articleId;
     }
@@ -35,6 +31,10 @@ public class ArticleComment {
         this.articleId = articleId;
     }
 
+    @Basic
+    @Column(name = "member_id")
+    private int memberId;
+
     public int getMemberId() {
         return memberId;
     }
@@ -42,6 +42,10 @@ public class ArticleComment {
     public void setMemberId(int memberId) {
         this.memberId = memberId;
     }
+
+    @Basic
+    @Column(name = "comment")
+    private String comment;
 
     public String getComment() {
         return comment;
@@ -55,23 +59,12 @@ public class ArticleComment {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         ArticleComment that = (ArticleComment) o;
-
-        if (commentId != that.commentId) return false;
-        if (articleId != that.articleId) return false;
-        if (memberId != that.memberId) return false;
-        if (comment != null ? !comment.equals(that.comment) : that.comment != null) return false;
-
-        return true;
+        return commentId == that.commentId && articleId == that.articleId && memberId == that.memberId && Objects.equals(comment, that.comment);
     }
 
     @Override
     public int hashCode() {
-        int result = commentId;
-        result = 31 * result + articleId;
-        result = 31 * result + memberId;
-        result = 31 * result + (comment != null ? comment.hashCode() : 0);
-        return result;
+        return Objects.hash(commentId, articleId, memberId, comment);
     }
 }

@@ -19,6 +19,8 @@ public class WebMvcConfig implements WebMvcConfigurer{
     public void addInterceptors(InterceptorRegistry registry) { // interceptorRegistry라는 저장소에 interceptor를 집어넣자.
         registry.addInterceptor(loginCheckInterceptor)
                 .addPathPatterns("/users/**")
+                .addPathPatterns("/attractions/")
+                .excludePathPatterns("/users/interceptTest")
                 .excludePathPatterns("/login/**"); // users는 모든 요청에대해 인터셉터를 적용시키고, login 으로 되어있는건 다 적용X
 
     }
