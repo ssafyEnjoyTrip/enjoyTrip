@@ -12,5 +12,12 @@ import lombok.ToString;
 @AllArgsConstructor
 @ToString
 public class AttractionDto {
-	private String attractionId; 
+	private Long attractionId;
+	private String cat1;
+	private String cat2;
+	private String cat3;
+	private String createdTime;
+	private String modifiedTime;
+	private String booktour;
+
 }
