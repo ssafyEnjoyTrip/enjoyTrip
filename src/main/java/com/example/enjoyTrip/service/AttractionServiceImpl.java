@@ -2,6 +2,8 @@ package com.example.enjoyTrip.service;
 
 import com.example.enjoyTrip.dto.AttractionDto;
 import com.example.enjoyTrip.entity.AttractionDetail;
+import com.example.enjoyTrip.entity.AttractionInfo;
+import com.example.enjoyTrip.repository.AttractionInfoRepository;
 import com.example.enjoyTrip.repository.AttractionRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -13,6 +15,7 @@ import java.util.List;
 public class AttractionServiceImpl implements AttractionService{
 
     private final AttractionRepository attractionRepository;
+    private final AttractionInfoRepository attractionInfoRepository;
 
     @Override
     public List<AttractionDetail> list() {
@@ -22,5 +25,10 @@ public class AttractionServiceImpl implements AttractionService{
     @Override
     public AttractionDetail detail(int contentId) {
         return attractionRepository.findById(contentId).orElse(null);
+    }
+
+    @Override
+    public List<AttractionInfo> countsList(int counts) {
+        return attractionInfoRepository.findTop5ByReadCountGreaterThanOrderByReadCountDesc(counts);
     }
 }
