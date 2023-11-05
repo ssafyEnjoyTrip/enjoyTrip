@@ -1,6 +1,5 @@
 package com.example.enjoyTrip.controller;
 
-import com.example.enjoyTrip.dto.AttractionDto;
 import com.example.enjoyTrip.entity.AttractionDetail;
 import com.example.enjoyTrip.service.AttractionService;
 import lombok.RequiredArgsConstructor;
@@ -28,5 +27,4 @@ public class AttractionController {
         return service.detail(contentId);
     }
 
-    @
 }
