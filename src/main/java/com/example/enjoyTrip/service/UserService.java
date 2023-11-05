@@ -1,8 +1,12 @@
 package com.example.enjoyTrip.service;
 
-import org.springframework.stereotype.Service;
+import com.example.enjoyTrip.entity.User;
 
-@Service
-public class UserService {
+import java.util.List;
+
+public interface UserService {
+
+    List<User> list();
+    User detail(int memberId);
 
 }

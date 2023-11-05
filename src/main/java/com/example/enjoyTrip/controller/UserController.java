@@ -2,6 +2,7 @@ package com.example.enjoyTrip.controller;
 
 import java.util.List;
 
+import com.example.enjoyTrip.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,7 +14,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.enjoyTrip.dto.AttractionDto;
 import com.example.enjoyTrip.dto.UserDto;
-import com.example.enjoyTrip.service.UserService;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 @RestController
 @RequestMapping("/users")
@@ -22,9 +25,10 @@ public class UserController {
 	@Autowired
 	UserService service;
 	
-	@GetMapping("/")
-	public String test() {
-		return null	;
+	@GetMapping("/interceptTest")
+	public String test(HttpSession session) {
+		session.setAttribute("user", "Ok");
+		return null;
 	}
 	
 	@PostMapping("/")
