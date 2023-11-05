@@ -1,6 +1,7 @@
 package com.example.enjoyTrip.controller;
 
 import com.example.enjoyTrip.entity.AttractionDetail;
+import com.example.enjoyTrip.entity.AttractionInfo;
 import com.example.enjoyTrip.service.AttractionService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,6 +26,11 @@ public class AttractionController {
     @GetMapping("/{contentId}")
     public AttractionDetail attractionDetail(@PathVariable int contentId){
         return service.detail(contentId);
+    }
+
+    @GetMapping("/readCount/{counts}")
+    public List<AttractionInfo> attractionListCount(@PathVariable int counts){
+        return service.countsList(counts);
     }
 
 }
