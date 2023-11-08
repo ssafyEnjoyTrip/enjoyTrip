@@ -32,3 +32,9 @@ article 테이블에 좋아요 갯수 컬럼 필요.
 - 기본 crud
 - 관광지 즐겨찾기 -> 내가 즐겨찾기한 관광지들을 모두 가는데,
 - 관광지 좋아요
+
+
+![image](https://github.com/ssafyEnjoyTrip/enjoyTrip/assets/109134365/d43663e1-6cf3-48c1-99a1-0860c32f0159)
+
+
+메인 5개는 관광지 탑 5개를 표시.
