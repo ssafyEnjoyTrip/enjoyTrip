@@ -11,6 +11,16 @@ public class Gugun {
     @javax.persistence.Column(name = "gugun_code")
     private int gugunCode;
 
+    @Basic
+    @Column(name = "gugun_name")
+    private String gugunName;
+
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @Column(name = "sido_code")
+    private int sidoCode;
+
+
     public int getGugunCode() {
         return gugunCode;
     }
@@ -19,9 +29,7 @@ public class Gugun {
         this.gugunCode = gugunCode;
     }
 
-    @Basic
-    @Column(name = "gugun_name")
-    private String gugunName;
+
 
     public String getGugunName() {
         return gugunName;
@@ -31,9 +39,6 @@ public class Gugun {
         this.gugunName = gugunName;
     }
 
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "sido_code")
-    private int sidoCode;
 
     public int getSidoCode() {
         return sidoCode;

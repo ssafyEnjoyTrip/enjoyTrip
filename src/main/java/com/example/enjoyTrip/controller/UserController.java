@@ -2,6 +2,7 @@ package com.example.enjoyTrip.controller;
 
 import java.util.List;
 
+import com.example.enjoyTrip.entity.User;
 import com.example.enjoyTrip.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -24,7 +25,12 @@ public class UserController {
 	
 	@Autowired
 	UserService service;
-	
+
+	@GetMapping("/search/{keyword}")
+	public List<User> search(@PathVariable String keyword){
+		return service.findByNameLike("%" + keyword + "%");
+	}
+
 	@GetMapping("/interceptTest")
 	public String test(HttpSession session) {
 		session.setAttribute("user", "Ok");

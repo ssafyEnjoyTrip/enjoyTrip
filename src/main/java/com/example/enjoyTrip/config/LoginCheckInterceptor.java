@@ -17,10 +17,10 @@ public class LoginCheckInterceptor implements HandlerInterceptor{
         String user = (String) request.getSession().getAttribute("user");
         System.out.println(user);
         // 일단 인터셉터 적용하지 말기. 11-03
-        if( user == null ) {
-            response.sendRedirect("/index.html");
-            return false;
-        }
+//        if( user == null ) {
+//            response.sendRedirect("/index.html");
+//            return false;
+//        }
         return true;
     }
 
