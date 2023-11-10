@@ -11,6 +11,30 @@ public class Article {
     @javax.persistence.Column(name = "article_id")
     private int articleId;
 
+    @Basic
+    @Column(name = "user_id")
+    private String userId;
+    
+    @Basic
+    @Column(name = "title")
+    private String title;
+    
+    @Basic
+    @Column(name = "register_time")
+    private Timestamp registerTime;
+    
+    @Basic
+    @Column(name = "content")
+    private String content;
+    
+    @Basic
+    @Column(name = "comments_count")
+    private Integer commentsCount;
+    
+    @Basic
+    @Column(name = "member_id")
+    private Integer memberId;
+    
     public int getArticleId() {
         return articleId;
     }
@@ -19,9 +43,7 @@ public class Article {
         this.articleId = articleId;
     }
 
-    @Basic
-    @Column(name = "user_id")
-    private String userId;
+    
 
     public String getUserId() {
         return userId;
@@ -31,9 +53,7 @@ public class Article {
         this.userId = userId;
     }
 
-    @Basic
-    @Column(name = "title")
-    private String title;
+  
 
     public String getTitle() {
         return title;
@@ -43,9 +63,7 @@ public class Article {
         this.title = title;
     }
 
-    @Basic
-    @Column(name = "register_time")
-    private Timestamp registerTime;
+    
 
     public Timestamp getRegisterTime() {
         return registerTime;
@@ -55,9 +73,7 @@ public class Article {
         this.registerTime = registerTime;
     }
 
-    @Basic
-    @Column(name = "comments_count")
-    private Integer commentsCount;
+   
 
     public Integer getCommentsCount() {
         return commentsCount;
@@ -67,9 +83,7 @@ public class Article {
         this.commentsCount = commentsCount;
     }
 
-    @Basic
-    @Column(name = "content")
-    private String content;
+   
 
     public String getContent() {
         return content;
@@ -79,9 +93,7 @@ public class Article {
         this.content = content;
     }
 
-    @Basic
-    @Column(name = "member_id")
-    private Integer memberId;
+   
 
     public Integer getMemberId() {
         return memberId;
