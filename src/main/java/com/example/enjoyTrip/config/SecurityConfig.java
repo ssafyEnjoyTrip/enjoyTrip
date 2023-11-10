@@ -1,5 +1,9 @@
 package com.example.enjoyTrip.config;
 
+import com.example.enjoyTrip.config.auth.MyAuthenticationFailureHandler;
+import com.example.enjoyTrip.config.auth.MyAuthenticationSuccessHandler;
+import com.example.enjoyTrip.config.auth.PrincipalDetailService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -9,9 +13,14 @@ import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 @EnableWebSecurity // 스프링 시큐리티 필터가 스프링 필터 체인에 등록되게 한다.
+@RequiredArgsConstructor
 public class SecurityConfig {
-	
-	
+
+	private final MyAuthenticationSuccessHandler authenticationSuccessHandler;
+
+	private final MyAuthenticationFailureHandler authenticationFailureHandler;
+
+	private final PrincipalDetailService principalDetailService;
 	@Bean // IoC(제어의 역전)에 등록해준다.
 	public BCryptPasswordEncoder encodePwd() {
 		return new BCryptPasswordEncoder();
@@ -34,7 +43,9 @@ public class SecurityConfig {
 		.loginPage("/loginForm") // 사용자가 인증되지 않은 경우 로그인 페이지로 리다이렉트 하는데 그게 /loginForm 요청이다.
 		.usernameParameter("email")
 		.loginProcessingUrl("/login") // /login 주소가 호출이 되면 시큐리티가 낚아채서 대신 로그인을 진행해준다.
-		.defaultSuccessUrl("/"); // 로그인이 성공하면 / 주소로 간다.
+				.successHandler(authenticationSuccessHandler)
+		.failureHandler(authenticationFailureHandler);
+//				.defaultSuccessUrl("/"); // 로그인이 성공하면 / 주소로 간다.
 		return http.build();
 	}
 	
