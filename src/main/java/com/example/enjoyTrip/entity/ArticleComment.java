@@ -32,15 +32,15 @@ public class ArticleComment {
     }
 
     @Basic
-    @Column(name = "member_id")
-    private int memberId;
+    @Column(name = "user_id")
+    private int userId;
 
-    public int getMemberId() {
-        return memberId;
+    public int getUserId() {
+        return userId;
     }
 
-    public void setMemberId(int memberId) {
-        this.memberId = memberId;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     @Basic
@@ -55,16 +55,28 @@ public class ArticleComment {
         this.comment = comment;
     }
 
+    @Basic
+    @Column(name = "member_id")
+    private Integer memberId;
+
+    public Integer getMemberId() {
+        return memberId;
+    }
+
+    public void setMemberId(Integer memberId) {
+        this.memberId = memberId;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ArticleComment that = (ArticleComment) o;
-        return commentId == that.commentId && articleId == that.articleId && memberId == that.memberId && Objects.equals(comment, that.comment);
+        return commentId == that.commentId && articleId == that.articleId && userId == that.userId && Objects.equals(comment, that.comment) && Objects.equals(memberId, that.memberId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(commentId, articleId, memberId, comment);
+        return Objects.hash(commentId, articleId, userId, comment, memberId);
     }
 }

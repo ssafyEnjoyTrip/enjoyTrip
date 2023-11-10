@@ -28,9 +28,9 @@ public class AttractionController {
         return service.detail(contentId);
     }
 
-    @GetMapping("/readCount/{counts}")
-    public List<AttractionInfo> attractionListCount(@PathVariable int counts){
-        return service.countsList(counts);
+    @GetMapping("/readCount")
+    public List<AttractionInfo> attractionListCount(){
+        return service.readCountTop5List();
     }
 
 }

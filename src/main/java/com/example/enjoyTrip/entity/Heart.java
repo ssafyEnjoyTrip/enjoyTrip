@@ -10,11 +10,14 @@ public class Heart {
     @Column(name = "heart_id")
     private int heartId;
     @Basic
-    @Column(name = "member_id")
-    private int memberId;
+    @Column(name = "user_id")
+    private int userId;
     @Basic
     @Column(name = "content_id")
     private int contentId;
+    @Basic
+    @Column(name = "member_id")
+    private Integer memberId;
 
     public int getHeartId() {
         return heartId;
@@ -24,12 +27,12 @@ public class Heart {
         this.heartId = heartId;
     }
 
-    public int getMemberId() {
-        return memberId;
+    public int getUserId() {
+        return userId;
     }
 
-    public void setMemberId(int memberId) {
-        this.memberId = memberId;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     public int getContentId() {
@@ -40,16 +43,24 @@ public class Heart {
         this.contentId = contentId;
     }
 
+    public Integer getMemberId() {
+        return memberId;
+    }
+
+    public void setMemberId(Integer memberId) {
+        this.memberId = memberId;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Heart heart = (Heart) o;
-        return heartId == heart.heartId && memberId == heart.memberId && contentId == heart.contentId;
+        return heartId == heart.heartId && userId == heart.userId && contentId == heart.contentId && Objects.equals(memberId, heart.memberId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(heartId, memberId, contentId);
+        return Objects.hash(heartId, userId, contentId, memberId);
     }
 }
