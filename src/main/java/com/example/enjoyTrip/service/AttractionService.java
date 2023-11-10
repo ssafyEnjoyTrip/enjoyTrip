@@ -10,5 +10,5 @@ public interface AttractionService {
     List<AttractionDetail> list();
     AttractionDetail detail(int contentId);
 
-    List<AttractionInfo> countsList(int counts);
+    List<AttractionInfo> readCountTop5List();
 }

@@ -27,7 +27,7 @@ public class AttractionServiceImpl implements AttractionService{
     }
 
     @Override
-    public List<AttractionInfo> countsList(int counts) {
-        return attractionInfoRepository.findTop5ByReadCountGreaterThanOrderByReadCountDesc(counts);
+    public List<AttractionInfo> readCountTop5List() {
+        return attractionInfoRepository.findTop5ByOrderByReadcountDesc();
     }
 }
