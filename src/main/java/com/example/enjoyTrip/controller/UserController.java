@@ -4,29 +4,26 @@ import java.util.List;
 
 import com.example.enjoyTrip.entity.User;
 import com.example.enjoyTrip.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.*;
 
 import com.example.enjoyTrip.dto.AttractionDto;
 import com.example.enjoyTrip.dto.UserDto;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-@RestController
+@Controller
 @RequestMapping("/users")
+@RequiredArgsConstructor
 public class UserController {
-	
-	@Autowired
-	UserService service;
 
+	private final UserService service;
+
+	private final BCryptPasswordEncoder bCryptPasswordEncoder; // 비밀번호 암호화
 	@GetMapping("/search/{keyword}")
+	@ResponseBody
 	public List<User> search(@PathVariable String keyword){
 		return service.findByNameLike("%" + keyword + "%");
 	}
@@ -37,11 +34,7 @@ public class UserController {
 		return null;
 	}
 	
-	@PostMapping("/")
-	public int insert(UserDto dto) {
-//		return service.insert(dto);
-		return 1;
-	}
+
 	
 	@PutMapping("/{userId}")
 	public int update(@PathVariable int userId, UserDto dto) {

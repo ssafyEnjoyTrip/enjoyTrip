@@ -20,15 +20,15 @@ public class Article {
     }
 
     @Basic
-    @Column(name = "member_id")
-    private int memberId;
+    @Column(name = "user_id")
+    private String userId;
 
-    public int getMemberId() {
-        return memberId;
+    public String getUserId() {
+        return userId;
     }
 
-    public void setMemberId(int memberId) {
-        this.memberId = memberId;
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
     @Basic
@@ -79,16 +79,28 @@ public class Article {
         this.content = content;
     }
 
+    @Basic
+    @Column(name = "member_id")
+    private Integer memberId;
+
+    public Integer getMemberId() {
+        return memberId;
+    }
+
+    public void setMemberId(Integer memberId) {
+        this.memberId = memberId;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Article article = (Article) o;
-        return articleId == article.articleId && memberId == article.memberId && Objects.equals(title, article.title) && Objects.equals(registerTime, article.registerTime) && Objects.equals(commentsCount, article.commentsCount) && Objects.equals(content, article.content);
+        return articleId == article.articleId && Objects.equals(userId, article.userId) && Objects.equals(title, article.title) && Objects.equals(registerTime, article.registerTime) && Objects.equals(commentsCount, article.commentsCount) && Objects.equals(content, article.content) && Objects.equals(memberId, article.memberId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(articleId, memberId, title, registerTime, commentsCount, content);
+        return Objects.hash(articleId, userId, title, registerTime, commentsCount, content, memberId);
     }
 }
