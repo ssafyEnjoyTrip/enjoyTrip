@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 @RequiredArgsConstructor
@@ -27,6 +28,7 @@ public class MainController {
 	}
 
 	@PostMapping("/join")
+	@ResponseBody
 	public String join(UserDto user) {
 		user.setRole("ROLE_USER");
 		String rawPassword = user.getPassword();
@@ -35,7 +37,7 @@ public class MainController {
 		user.setPassword(encPassword);
 		System.out.println(user);
 		service.join(user);
-		return "redirect:/loginForm";
+		return "success";
 	}
 	
 }
