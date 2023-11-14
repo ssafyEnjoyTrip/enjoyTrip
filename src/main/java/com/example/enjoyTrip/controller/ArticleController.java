@@ -2,6 +2,7 @@ package com.example.enjoyTrip.controller;
 
 import java.util.List;
 
+import com.example.enjoyTrip.dto.ListDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -12,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.enjoyTrip.dto.ArticleDto;
 import com.example.enjoyTrip.entity.Article;
 import com.example.enjoyTrip.service.ArticleService;
 
@@ -26,7 +26,7 @@ public class ArticleController {
 	
 	@GetMapping("/list")
 	public List<Article> list(){
-		return articleService.list();
+		return articleService.findList();
 	}
 	
 	@GetMapping("/{articleId}")

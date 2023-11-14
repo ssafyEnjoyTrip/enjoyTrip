@@ -20,5 +20,13 @@ public class ArticleDto {
 	private Timestamp registerTime;
 	private int commentsCount;
 	private String content;
-	private int memberId;
+
+	public Integer getArticleId(){
+		return this.articleId;
+	}
+
+	public Integer getCommentsCount(){
+		return this.commentsCount;
+	}
+
 }
