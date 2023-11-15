@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.enjoyTrip.dto.ArticleDto;
 import com.example.enjoyTrip.entity.Article;
+import com.example.enjoyTrip.repository.IArticle;
 import com.example.enjoyTrip.service.ArticleService;
 
 @RestController
@@ -25,8 +25,8 @@ public class ArticleController {
 	ArticleService articleService;
 	
 	@GetMapping("/list")
-	public List<Article> list(){
-		return articleService.list();
+	public List<IArticle> list(){
+		return articleService.findList();
 	}
 	
 	@GetMapping("/{articleId}")

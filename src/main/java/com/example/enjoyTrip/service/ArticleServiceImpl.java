@@ -2,19 +2,20 @@ package com.example.enjoyTrip.service;
 
 import java.util.List;
 
+import com.example.enjoyTrip.dto.ListDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.enjoyTrip.dto.ArticleDto;
 import com.example.enjoyTrip.entity.Article;
 import com.example.enjoyTrip.repository.ArticleRepository;
+import com.example.enjoyTrip.repository.IArticle;
 
 @Service
 public class ArticleServiceImpl implements ArticleService{
 	
 	@Autowired
 	ArticleRepository articleRepository;
-	
+
 	@Override
 	public List<Article> list() {
 		return articleRepository.findAll();
@@ -48,5 +49,9 @@ public class ArticleServiceImpl implements ArticleService{
 	public List<Article> findByTitleLike(String keyword) {
 		return articleRepository.findByTitleLike( "%" + keyword + "%");
 	}
-	
+
+	@Override
+	public List<IArticle> findList(){
+		return articleRepository.findList();
+	}
 }
