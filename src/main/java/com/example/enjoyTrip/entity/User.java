@@ -32,6 +32,7 @@ public class User {
     @Column(name = "role")
     private String role;
 
+
     public int getId() {
         return id;
     }
