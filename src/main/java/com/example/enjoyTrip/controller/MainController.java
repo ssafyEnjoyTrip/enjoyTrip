@@ -3,6 +3,7 @@ package com.example.enjoyTrip.controller;
 import com.example.enjoyTrip.dto.UserDto;
 import com.example.enjoyTrip.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -19,6 +20,7 @@ public class MainController {
 	private final BCryptPasswordEncoder bCryptPasswordEncoder; // 비밀번호 암호화
 	@GetMapping("/")
 	public String main() {
+
 		return "index.html";
 	}
 	

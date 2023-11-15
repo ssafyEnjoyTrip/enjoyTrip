@@ -2,9 +2,12 @@ package com.example.enjoyTrip.controller;
 
 import java.util.List;
 
+import com.example.enjoyTrip.config.auth.PrincipalDetails;
 import com.example.enjoyTrip.entity.User;
 import com.example.enjoyTrip.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -23,6 +26,16 @@ public class UserController {
 	private final UserService service;
 
 	private final BCryptPasswordEncoder bCryptPasswordEncoder; // 비밀번호 암호화
+
+	@GetMapping("/id")
+	@ResponseBody
+	public int userName(){
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		int userId = ((PrincipalDetails) authentication.getPrincipal()).getUserId();
+		System.out.println(userId);
+		return userId;
+	}
+
 	@GetMapping("/search/{keyword}")
 	@ResponseBody
 	public List<User> search(@PathVariable String keyword){
