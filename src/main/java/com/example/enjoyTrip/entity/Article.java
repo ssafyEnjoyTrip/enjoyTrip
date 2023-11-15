@@ -37,9 +37,9 @@ public class Article {
     @Column(name = "comments_count")
     private Integer commentsCount;
 
-    @ManyToOne
-    @JoinColumn(name="id")
-    private User user;
+//    @ManyToOne
+//    @JoinColumn(name="id")
+//    private User user;
     
     public Integer getArticleId() {
         return articleId;
