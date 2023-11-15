@@ -1,19 +1,25 @@
 package com.example.enjoyTrip.entity;
 
+import lombok.*;
+
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.Objects;
 
 @Entity
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
 public class Article {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @javax.persistence.Column(name = "article_id")
-    private int articleId;
+    private Integer articleId;
 
-    @Basic
-    @Column(name = "user_id")
-    private String userId;
+    @Column(name = "user_id", nullable = false)
+    private Integer userId;
     
     @Basic
     @Column(name = "title")
@@ -30,26 +36,26 @@ public class Article {
     @Basic
     @Column(name = "comments_count")
     private Integer commentsCount;
+
+//    @ManyToOne
+//    @JoinColumn(name="id")
+//    private User user;
     
-    @Basic
-    @Column(name = "member_id")
-    private Integer memberId;
-    
-    public int getArticleId() {
+    public Integer getArticleId() {
         return articleId;
     }
 
-    public void setArticleId(int articleId) {
+    public void setArticleId(Integer articleId) {
         this.articleId = articleId;
     }
 
     
 
-    public String getUserId() {
+    public Integer getUserId() {
         return userId;
     }
 
-    public void setUserId(String userId) {
+    public void setUserId(Integer userId) {
         this.userId = userId;
     }
 
@@ -93,26 +99,16 @@ public class Article {
         this.content = content;
     }
 
-   
-
-    public Integer getMemberId() {
-        return memberId;
-    }
-
-    public void setMemberId(Integer memberId) {
-        this.memberId = memberId;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Article article = (Article) o;
-        return articleId == article.articleId && Objects.equals(userId, article.userId) && Objects.equals(title, article.title) && Objects.equals(registerTime, article.registerTime) && Objects.equals(commentsCount, article.commentsCount) && Objects.equals(content, article.content) && Objects.equals(memberId, article.memberId);
+        return articleId == article.articleId && Objects.equals(userId, article.userId) && Objects.equals(title, article.title) && Objects.equals(registerTime, article.registerTime) && Objects.equals(commentsCount, article.commentsCount) && Objects.equals(content, article.content);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(articleId, userId, title, registerTime, commentsCount, content, memberId);
+        return Objects.hash(articleId, userId, title, registerTime, commentsCount, content);
     }
 }

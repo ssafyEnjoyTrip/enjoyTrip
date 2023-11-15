@@ -17,6 +17,7 @@ import javax.servlet.http.HttpSession;
 @Controller
 @RequestMapping("/users")
 @RequiredArgsConstructor
+@CrossOrigin(origins="*", allowedHeaders = "*")
 public class UserController {
 
 	private final UserService service;
