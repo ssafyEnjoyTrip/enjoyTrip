@@ -20,6 +20,4 @@ public interface ArticleRepository extends JpaRepository<Article, Integer>{
 			+ ", a.commentsCount AS commentsCount, a.content AS content , u.name AS name, u.email AS email"
 			+ " from Article as a join User as u on a.userId = u.id")
 	List<IArticle> findList();
-	
-	
 }
