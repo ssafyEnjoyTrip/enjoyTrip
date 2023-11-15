@@ -10,7 +10,6 @@ import java.util.Objects;
 public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-
     @Column(name = "id")
     private Integer id;
     @Basic
