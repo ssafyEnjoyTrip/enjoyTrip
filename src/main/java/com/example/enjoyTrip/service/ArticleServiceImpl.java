@@ -8,13 +8,14 @@ import org.springframework.stereotype.Service;
 
 import com.example.enjoyTrip.entity.Article;
 import com.example.enjoyTrip.repository.ArticleRepository;
+import com.example.enjoyTrip.repository.IArticle;
 
 @Service
 public class ArticleServiceImpl implements ArticleService{
 	
 	@Autowired
 	ArticleRepository articleRepository;
-	
+
 	@Override
 	public List<Article> list() {
 		return articleRepository.findAll();
@@ -50,8 +51,7 @@ public class ArticleServiceImpl implements ArticleService{
 	}
 
 	@Override
-	public List<Article> findList(){
+	public List<IArticle> findList(){
 		return articleRepository.findList();
 	}
-	
 }
