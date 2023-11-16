@@ -24,15 +24,15 @@ public class ArticleController {
 	@Autowired
 	ArticleService articleService;
 	
-//	@GetMapping("/list")
-//	public List<IArticle> list(){
-//		return articleService.findList();
-//	}
-//	
-//	@GetMapping("/{articleId}")
-//	public IArticle singleDetail(@PathVariable int articleId) {
-//		return articleService.singleDetail(articleId);		
-//	}
+	@GetMapping("/list")
+	public List<IArticle> list(){
+		return articleService.findList();
+	}
+
+	@GetMapping("/{articleId}")
+	public IArticle singleDetail(@PathVariable int articleId) {
+		return articleService.singleDetail(articleId);
+	}
 	
 	@PostMapping("/insert")
 	public int insert(@RequestBody Article dto) {
