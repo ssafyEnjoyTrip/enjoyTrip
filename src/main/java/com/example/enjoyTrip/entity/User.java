@@ -1,8 +1,5 @@
 package com.example.enjoyTrip.entity;
 
-import org.hibernate.annotations.CreationTimestamp;
-
-import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +23,12 @@ import lombok.Setter;
 import lombok.ToString;
 
 @Entity
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @ToString
+@EqualsAndHashCode
 public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
