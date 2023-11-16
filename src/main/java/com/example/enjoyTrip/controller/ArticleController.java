@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.enjoyTrip.dto.ListDto;
 import com.example.enjoyTrip.entity.Article;
 import com.example.enjoyTrip.repository.IArticle;
 import com.example.enjoyTrip.service.ArticleService;
@@ -24,14 +25,19 @@ public class ArticleController {
 	@Autowired
 	ArticleService articleService;
 	
+	@GetMapping("/list")
+	public List<IArticle> list(){
+		return articleService.findList();
+	}
+	
 //	@GetMapping("/list")
-//	public List<IArticle> list(){
-//		return articleService.findList();
+//	public List<Article> list(){
+//		return articleService.findByUser();
 //	}
 //	
 //	@GetMapping("/{articleId}")
-//	public IArticle singleDetail(@PathVariable int articleId) {
-//		return articleService.singleDetail(articleId);		
+//	public Article detail(@PathVariable int articleId) {
+//		return articleService.findByArticleId(articleId);
 //	}
 	
 	@PostMapping("/insert")
