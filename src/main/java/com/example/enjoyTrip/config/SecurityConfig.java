@@ -43,9 +43,17 @@ public class SecurityConfig {
 		.loginPage("/loginForm") // 사용자가 인증되지 않은 경우 로그인 페이지로 리다이렉트 하는데 그게 /loginForm 요청이다.
 		.usernameParameter("email")
 		.loginProcessingUrl("/login") // /login 주소가 호출이 되면 시큐리티가 낚아채서 대신 로그인을 진행해준다.
-				.successHandler(authenticationSuccessHandler)
+		.successHandler(authenticationSuccessHandler)
 		.failureHandler(authenticationFailureHandler);
 //				.defaultSuccessUrl("/"); // 로그인이 성공하면 / 주소로 간다.
+
+
+		http.logout() // 로그아웃 기능 작동함
+				.logoutUrl("/logout") // 로그아웃 처리 URL, default: /logout, 원칙적으로 post 방식만 지원
+				.logoutSuccessUrl("/logoutSuccess"); // 로그아웃 성공 후 이동페이지
+
+
+
 		return http.build();
 	}
 	
