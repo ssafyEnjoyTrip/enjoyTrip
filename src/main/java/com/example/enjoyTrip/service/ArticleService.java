@@ -15,6 +15,6 @@ public interface ArticleService {
 	int insert(Article dto);
 	int delete(int articleId);
 	List<Article> findByTitleLike(String keyword);
-	List<IArticle> findList();
-	IArticle singleDetail(@Param("articleId") int articleId);
+//	List<IArticle> findList();
+//	IArticle singleDetail(@Param("articleId") int articleId);
 }

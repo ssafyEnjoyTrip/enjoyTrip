@@ -3,6 +3,7 @@ package com.example.enjoyTrip.entity;
 import javax.persistence.*;
 
 import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -17,6 +18,7 @@ import java.util.Objects;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
+@EqualsAndHashCode
 @javax.persistence.Table(name = "article_comment", schema = "enjoytrip", catalog = "")
 public class ArticleComment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,28 +26,15 @@ public class ArticleComment {
     @javax.persistence.Column(name = "comment_id")
     private int commentId;
 
-    @Basic
-    @Column(name = "article_id")
-    private int articleId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private User user;
 
-    @Basic
-    @Column(name = "user_id")
-    private int userId;
-
-    @Basic
     @Column(name = "comment")
     private String comment;
+    
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "article_id")
+    private Article article;
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        ArticleComment that = (ArticleComment) o;
-        return commentId == that.commentId && articleId == that.articleId && userId == that.userId && Objects.equals(comment, that.comment) ;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(commentId, articleId, userId, comment);
-    }
 }
