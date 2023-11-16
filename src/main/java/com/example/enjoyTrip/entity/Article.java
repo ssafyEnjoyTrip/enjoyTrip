@@ -1,10 +1,25 @@
 package com.example.enjoyTrip.entity;
 
-import lombok.*;
-
-import javax.persistence.*;
 import java.sql.Timestamp;
-import java.util.Objects;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+
+import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
 @Entity
 @Getter
@@ -12,41 +27,24 @@ import java.util.Objects;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
+@EqualsAndHashCode
 public class Article {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @javax.persistence.Column(name = "article_id")
     private int articleId;
-
-    @Column(name = "user_id", nullable = false)
-    private int userId;
     
-    @Basic
     @Column(name = "title", nullable = false)
     private String title;
     
-    @Basic
     @Column(name = "register_time")
     private Timestamp registerTime;
     
-    @Basic
     @Column(name = "content", nullable = false)
     private String content;
     
-    @Basic
-    @Column(name = "comments_count")
-    private Integer commentsCount;
+    @JoinColumn(name = "user_id")
+    @ManyToOne(fetch = FetchType.LAZY)    
+    private User user;
     
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Article article = (Article) o;
-        return articleId == article.articleId && Objects.equals(userId, article.userId) && Objects.equals(title, article.title) && Objects.equals(registerTime, article.registerTime) && Objects.equals(commentsCount, article.commentsCount) && Objects.equals(content, article.content);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(articleId, userId, title, registerTime, commentsCount, content);
-    }
 }

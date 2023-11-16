@@ -3,6 +3,7 @@ package com.example.enjoyTrip.entity;
 import javax.persistence.*;
 
 import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -18,12 +19,13 @@ import java.util.Objects;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
+@EqualsAndHashCode
 @javax.persistence.Table(name = "attraction_info", schema = "enjoytrip", catalog = "")
 public class AttractionInfo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @javax.persistence.Column(name = "content_id")
-    private int contentId;
+    @javax.persistence.Column(name = "attraction_id")
+    private int attractionId;
 
     @Basic
     @Column(name = "content_type_id")
@@ -82,16 +84,4 @@ public class AttractionInfo {
     @Column(name = "mlevel")
     private String mlevel;
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        AttractionInfo that = (AttractionInfo) o;
-        return contentId == that.contentId && Objects.equals(contentTypeId, that.contentTypeId) && Objects.equals(title, that.title) && Objects.equals(addr1, that.addr1) && Objects.equals(addr2, that.addr2) && Objects.equals(zipcode, that.zipcode) && Objects.equals(tel, that.tel) && Objects.equals(firstImage, that.firstImage) && Objects.equals(firstImage2, that.firstImage2) && Objects.equals(readcount, that.readcount) && Objects.equals(sidoCode, that.sidoCode) && Objects.equals(gugunCode, that.gugunCode) && Objects.equals(latitude, that.latitude) && Objects.equals(longitude, that.longitude) && Objects.equals(mlevel, that.mlevel);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(contentId, contentTypeId, title, addr1, addr2, zipcode, tel, firstImage, firstImage2, readcount, sidoCode, gugunCode, latitude, longitude, mlevel);
-    }
 }
