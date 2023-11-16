@@ -19,14 +19,18 @@ import java.util.Objects;
 @AllArgsConstructor
 @ToString
 @EqualsAndHashCode
+//마이페이지
+//user_id로 북마크 한것들 불러오기.
+//불러오면 attraction_id로 조회해서 뿌려주기.
 public class Bookmarks {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "bookmark_id")
     private int id;
 
 //    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "attraction_id")
+    @Column(name = "attraction_id")
     private int attractionId;
 
     @ManyToOne(fetch = FetchType.LAZY)

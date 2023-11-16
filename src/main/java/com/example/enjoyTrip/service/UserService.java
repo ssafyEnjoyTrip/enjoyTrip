@@ -1,5 +1,6 @@
 package com.example.enjoyTrip.service;
 
+import com.example.enjoyTrip.dto.MyPageResultDto;
 import com.example.enjoyTrip.dto.UserDto;
 import com.example.enjoyTrip.entity.User;
 
@@ -12,4 +13,6 @@ public interface UserService {
     List<User> findByNameLike(String keyword);
     User findByEmail(String Email);
     String join(UserDto dto);
+
+    MyPageResultDto mypage(int userId);
 }
