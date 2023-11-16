@@ -3,6 +3,7 @@ package com.example.enjoyTrip.entity;
 import javax.persistence.*;
 
 import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -17,31 +18,21 @@ import java.util.Objects;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
+@EqualsAndHashCode
 public class Bookmarks {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @javax.persistence.Column(name = "id")
+    @Column(name = "bookmark_id")
     private int id;
 
-    @Basic
-    @Column(name = "content_id")
-    private int contentId;
+//    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "attraction_id")
+    private int attractionId;
 
-    @Basic
-    @Column(name = "user_id")
-    private int userId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private User user;
+    
 
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Bookmarks bookmarks = (Bookmarks) o;
-        return id == bookmarks.id && contentId == bookmarks.contentId && Objects.equals(userId, bookmarks.userId);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, contentId, userId);
-    }
 }

@@ -51,12 +51,12 @@ public class ArticleServiceImpl implements ArticleService{
 		return articleRepository.findByTitleLike( "%" + keyword + "%");
 	}
 
-	@Override
-	public List<IArticle> findList(){
-		return articleRepository.findList();
-	}
-	@Override
-	public IArticle singleDetail(@Param("articleId") int articleId) {
-		return articleRepository.singleDetail(articleId);
-	}
+//	@Override
+//	public List<IArticle> findList(){
+//		return articleRepository.findList();
+//	}
+//	@Override
+//	public IArticle singleDetail(@Param("articleId") int articleId) {
+//		return articleRepository.singleDetail(articleId);
+//	}
 }
