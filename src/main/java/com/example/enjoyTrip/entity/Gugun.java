@@ -1,9 +1,22 @@
 package com.example.enjoyTrip.entity;
 
 import javax.persistence.*;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+
+import java.sql.Timestamp;
 import java.util.Objects;
 
 @Entity
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
 @IdClass(com.example.enjoyTrip.entity.GugunPK.class)
 public class Gugun {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -11,38 +24,14 @@ public class Gugun {
     @javax.persistence.Column(name = "gugun_code")
     private int gugunCode;
 
-    public int getGugunCode() {
-        return gugunCode;
-    }
-
-    public void setGugunCode(int gugunCode) {
-        this.gugunCode = gugunCode;
-    }
-
     @Basic
     @Column(name = "gugun_name")
     private String gugunName;
-
-    public String getGugunName() {
-        return gugunName;
-    }
-
-    public void setGugunName(String gugunName) {
-        this.gugunName = gugunName;
-    }
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @Column(name = "sido_code")
     private int sidoCode;
-
-    public int getSidoCode() {
-        return sidoCode;
-    }
-
-    public void setSidoCode(int sidoCode) {
-        this.sidoCode = sidoCode;
-    }
 
     @Override
     public boolean equals(Object o) {
