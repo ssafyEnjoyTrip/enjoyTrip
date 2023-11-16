@@ -30,8 +30,8 @@ public class ArticleController {
 	}
 	
 	@GetMapping("/{articleId}")
-	public Article detail(@PathVariable int articleId) {
-		return articleService.detail(articleId);		
+	public IArticle singleDetail(@PathVariable int articleId) {
+		return articleService.singleDetail(articleId);		
 	}
 	
 	@PostMapping("/insert")

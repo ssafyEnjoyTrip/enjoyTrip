@@ -1,9 +1,22 @@
 package com.example.enjoyTrip.entity;
 
 import javax.persistence.*;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+
+import java.sql.Timestamp;
 import java.util.Objects;
 
 @Entity
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
 public class Sido {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
@@ -12,22 +25,6 @@ public class Sido {
     @Basic
     @Column(name = "sido_name")
     private String sidoName;
-
-    public int getSidoCode() {
-        return sidoCode;
-    }
-
-    public void setSidoCode(int sidoCode) {
-        this.sidoCode = sidoCode;
-    }
-
-    public String getSidoName() {
-        return sidoName;
-    }
-
-    public void setSidoName(String sidoName) {
-        this.sidoName = sidoName;
-    }
 
     @Override
     public boolean equals(Object o) {

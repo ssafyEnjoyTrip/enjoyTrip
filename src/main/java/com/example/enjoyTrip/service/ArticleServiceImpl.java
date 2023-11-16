@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.example.enjoyTrip.dto.ListDto;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 
 import com.example.enjoyTrip.entity.Article;
@@ -53,5 +54,9 @@ public class ArticleServiceImpl implements ArticleService{
 	@Override
 	public List<IArticle> findList(){
 		return articleRepository.findList();
+	}
+	@Override
+	public IArticle singleDetail(@Param("articleId") int articleId) {
+		return articleRepository.singleDetail(articleId);
 	}
 }
