@@ -26,7 +26,6 @@ public class PrincipalDetailService implements UserDetailsService {
     // 싫으면 SecurityConfig에서 .usernameParameter("바꿀값") 으로 바꿔줘야함.
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        System.out.println("email : " + email);
         User user = userRepository.findByEmail(email);
         System.out.println(user);
         if(user != null){

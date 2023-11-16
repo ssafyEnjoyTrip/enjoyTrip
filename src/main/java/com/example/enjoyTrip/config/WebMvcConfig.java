@@ -16,8 +16,12 @@ public class WebMvcConfig implements WebMvcConfigurer{
 
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
-                .allowedOrigins("http://localhost:5173") // Replace with your frontend URL
-                .allowedMethods("GET", "POST", "PUT", "DELETE");
+                .allowedOrigins("http://localhost:5173")
+                .allowedMethods("GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS") // get, post는 기본적으로 모든 웹서버에서 default로 구현했다고 가정한다.
+                //근데 put,delete는 신뢰할 수 없는 메소드로 아직까지 지정이 되어있기때문에 put, delete 요청전에 options 메소로 먼저 put,delete를 받을 수 있는지 확인한다.
+                .allowedHeaders("*")
+                .allowCredentials(true)
+                .maxAge(3000);
     }
 //    LoginCheckInterceptor loginCheckInterceptor;
 

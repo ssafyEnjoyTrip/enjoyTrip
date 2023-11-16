@@ -24,7 +24,12 @@ public class MainController {
 
 		return "index.html";
 	}
-	
+	@GetMapping("/logoutSuccess")
+	@ResponseBody
+	public String logoutSuccess(){
+		return "success";
+	}
+
 	@GetMapping("/loginForm")
 	public String login() {
 		return "login.html";
