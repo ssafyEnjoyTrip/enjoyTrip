@@ -40,11 +40,6 @@ public class ArticleServiceImpl implements ArticleService{
 		return 0;
 	}
 
-	@Override
-	public int delete(int articleId) {		
-		articleRepository.deleteById(articleId);
-		return 1;
-	}
 
 	@Override
 	public List<Article> findByTitleLike(String keyword) {
@@ -52,12 +47,19 @@ public class ArticleServiceImpl implements ArticleService{
 	}
 
 	@Override
-	public List<IArticle> findList(){
+	public List<IArticle> findList() {
 		return articleRepository.findList();
 	}
 
 	@Override
-	public IArticle singleDetail(@Param("articleId") Integer articleId){
+	public IArticle singleDetail(int articleId){
 		return articleRepository.singleDetail(articleId);
 	}
+
+	@Override
+	public void deleteById(int articleId) {
+		articleRepository.deleteById(articleId);
+		
+	}
+
 }
