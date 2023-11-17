@@ -2,13 +2,10 @@ package com.example.enjoyTrip.controller;
 
 import java.util.List;
 
-import com.example.enjoyTrip.config.auth.PrincipalDetails;
+import com.example.enjoyTrip.dto.MyPageResultDto;
 import com.example.enjoyTrip.entity.User;
 import com.example.enjoyTrip.service.UserService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,15 +21,22 @@ public class UserController {
 
 	private final UserService service;
 
-	private final BCryptPasswordEncoder bCryptPasswordEncoder; // 비밀번호 암호화
-
-	@GetMapping("/id")
+	@GetMapping("/myPage/{userId}")
 	@ResponseBody
-	public int userName(){
-		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-		int userId = ((PrincipalDetails) authentication.getPrincipal()).getUserId();
-		System.out.println(userId);
-		return userId;
+	public MyPageResultDto myPage(@PathVariable int userId){
+		return service.mypage(userId);
+	}
+
+	@PutMapping("/{userId}")
+	@ResponseBody
+	public String updateProfile(@PathVariable int userId, @RequestBody UserDto user){
+		return service.updateProfile(userId, user);
+	}
+
+	@PostMapping("/checkPassword")
+	@ResponseBody
+	public String checkPassword(@RequestBody UserDto user){
+		return service.checkPassword(user);
 	}
 
 	@GetMapping("/search/{keyword}")
@@ -47,18 +51,10 @@ public class UserController {
 		return null;
 	}
 	
-
-	
-	@PutMapping("/{userId}")
-	public int update(@PathVariable int userId, UserDto dto) {
-//		return service.update(dto);
-		return 1;
-	}
-	
 	@DeleteMapping("/{userId}")
-	public int delete(@PathVariable int userId) {
-//		return service.delete(userId);
-		return 1;
+	@ResponseBody
+	public String delete(@PathVariable int userId) {
+		return service.delete(userId);
 	}
 	
 	@GetMapping("/likeList")
