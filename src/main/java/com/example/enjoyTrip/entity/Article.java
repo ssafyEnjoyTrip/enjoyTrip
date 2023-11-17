@@ -42,9 +42,11 @@ public class Article {
     
     @Column(name = "content", nullable = false)
     private String content;   
-    
+
+
+
     @JoinColumn(name = "user_id")
-    @ManyToOne(fetch = FetchType.LAZY)    
+    @ManyToOne
     private User user;
     
 }

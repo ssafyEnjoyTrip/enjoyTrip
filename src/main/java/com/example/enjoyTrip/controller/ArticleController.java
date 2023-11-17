@@ -19,7 +19,6 @@ import com.example.enjoyTrip.service.ArticleService;
 
 @RestController
 @RequestMapping("/article")
-@CrossOrigin(origins="*", allowedHeaders = "*")
 public class ArticleController {
 	
 	@Autowired
@@ -29,11 +28,6 @@ public class ArticleController {
 	public List<IArticle> list(){
 		return articleService.findList();
 	}
-	
-//	@GetMapping("/list")
-//	public List<Article> list(){
-//		return articleService.findByUser();
-//	}
 	
 	@GetMapping("/{articleId}")
 	public IArticle detail(@PathVariable int articleId) {
@@ -53,9 +47,11 @@ public class ArticleController {
 	}
 	
 	@PostMapping("/{keyword}")
-	public List<Article> search(String keyword){
+	public List<Article> search(@PathVariable String keyword){
 		return articleService.findByTitleLike(keyword);
 	}
+
+
 }
 
 
