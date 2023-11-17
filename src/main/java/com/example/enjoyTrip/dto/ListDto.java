@@ -17,11 +17,5 @@ public class ListDto {
     private String content;
     private String email;
     private String comment;
-
-    public Integer getArticleId() {
-        return this.articleId;
-    }
-    public Integer getCommentsCount() {
-        return this.commentsCount;
-    }
+    private String name;
 }

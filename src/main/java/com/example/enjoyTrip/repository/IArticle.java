@@ -6,8 +6,9 @@ public interface IArticle {
 	Integer getArticleId();
 	String getTitle();
 	Timestamp getRegisterTime();
-	Integer getCommentsCount();
 	String getContent();
 	String getName();
-	String getEmail();	
+	String getEmail();
+	String getComment();
+	Integer getCommentsCount();
 }
