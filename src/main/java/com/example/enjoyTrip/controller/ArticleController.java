@@ -34,11 +34,11 @@ public class ArticleController {
 //	public List<Article> list(){
 //		return articleService.findByUser();
 //	}
-//	
-//	@GetMapping("/{articleId}")
-//	public Article detail(@PathVariable int articleId) {
-//		return articleService.findByArticleId(articleId);
-//	}
+	
+	@GetMapping("/{articleId}")
+	public IArticle detail(@PathVariable int articleId) {
+		return articleService.singleDetail(articleId);
+	}
 	
 	@PostMapping("/insert")
 	public int insert(@RequestBody Article dto) {
@@ -47,8 +47,9 @@ public class ArticleController {
 	}
 	
 	@DeleteMapping("/{articleId}")
-	public int delete(@PathVariable int articleId) {
-		return articleService.delete(articleId);
+	public void delete(@PathVariable int articleId) {
+		articleService.deleteById(articleId);
+		System.out.println("삭제되었나요");
 	}
 	
 	@PostMapping("/{keyword}")

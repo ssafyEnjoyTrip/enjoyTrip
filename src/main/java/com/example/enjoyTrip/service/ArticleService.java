@@ -13,10 +13,10 @@ public interface ArticleService {
 	List<Article> list();
 	Article detail(int articleId);
 	int insert(Article dto);
-	int delete(int articleId);
 	List<Article> findByTitleLike(String keyword);
 	List<IArticle> findList();
 //	List<Article> findByUser();
 //	Article findByArticleId(int articleId);		
-//	List<IArticle> singleDetail();
+	IArticle singleDetail(int articleId);
+	void deleteById(int articleId);
 }

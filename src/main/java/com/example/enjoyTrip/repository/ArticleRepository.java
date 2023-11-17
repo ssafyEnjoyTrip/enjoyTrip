@@ -13,15 +13,15 @@ public interface ArticleRepository extends JpaRepository<Article, Integer>{
 	//
 	@Query(value = "select a.articleId AS articleId,a.title AS title, a.registerTime AS registerTime, a.content AS content, u.name AS name," +
 			" u.name AS name, count(c.comment) AS commentsCount from " +
-			"Article AS a JOIN User AS u ON a.user.id = u.userId JOIN ArticleComment AS c " +
+			"Article AS a JOIN User AS u ON a.user.id = u.userId LEFT OUTER JOIN ArticleComment AS c " +
 			"ON a.articleId = c.article.articleId group by a.articleId")
 	List<IArticle> findList();
 
-	@Query(value = "select a.articleId AS articleId, a.title AS title, a.registerTime AS registerTime, a.content AS content, u.name AS name," +
-			" u.name AS name, count(c.comment) AS commentsCount from " +
-			"Article AS a JOIN User AS u ON a.user.id = u.userId JOIN ArticleComment AS c " +
-			"ON a.articleId = c.article.articleId where a.articleId = :articleId")
+	@Query(value = "select a.articleId AS articleId, a.title AS title, a.registerTime AS registerTime, a.content AS content," +
+			" u.name AS name from " +
+			"Article AS a JOIN User AS u ON a.user.id = u.userId where a.articleId = :articleId")
 	IArticle singleDetail(@Param("articleId") int articleId);
 
 
+	void deleteById(@Param("articleId") int articleId);
 }
