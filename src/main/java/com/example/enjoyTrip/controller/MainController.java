@@ -43,7 +43,9 @@ public class MainController {
 		// 시큐리티를 사용해서 로그인 할려면 암호화된 비밀번호를 사용해야함. 그래서 암호화 작업 필요
 		String encPassword = bCryptPasswordEncoder.encode(rawPassword);
 		user.setPassword(encPassword);
+		System.out.println("It Is Null!!!!");
 		System.out.println(user);
+		System.out.println("YES!!");
 		service.join(user);
 		return "success";
 	}
