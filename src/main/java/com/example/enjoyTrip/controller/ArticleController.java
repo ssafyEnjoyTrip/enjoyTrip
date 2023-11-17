@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.enjoyTrip.dto.ListDto;
 import com.example.enjoyTrip.entity.Article;
 import com.example.enjoyTrip.repository.IArticle;
 import com.example.enjoyTrip.service.ArticleService;
@@ -24,15 +25,20 @@ public class ArticleController {
 	@Autowired
 	ArticleService articleService;
 	
+	@GetMapping("/list")
+	public List<IArticle> list(){
+		return articleService.findList();
+	}
+	
 //	@GetMapping("/list")
-//	public List<IArticle> list(){
-//		return articleService.findList();
+//	public List<Article> list(){
+//		return articleService.findByUser();
 //	}
-//	
-//	@GetMapping("/{articleId}")
-//	public IArticle singleDetail(@PathVariable int articleId) {
-//		return articleService.singleDetail(articleId);		
-//	}
+	
+	@GetMapping("/{articleId}")
+	public IArticle detail(@PathVariable int articleId) {
+		return articleService.singleDetail(articleId);
+	}
 	
 	@PostMapping("/insert")
 	public int insert(@RequestBody Article dto) {
@@ -41,8 +47,9 @@ public class ArticleController {
 	}
 	
 	@DeleteMapping("/{articleId}")
-	public int delete(@PathVariable int articleId) {
-		return articleService.delete(articleId);
+	public void delete(@PathVariable int articleId) {
+		articleService.deleteById(articleId);
+		System.out.println("삭제되었나요");
 	}
 	
 	@PostMapping("/{keyword}")
