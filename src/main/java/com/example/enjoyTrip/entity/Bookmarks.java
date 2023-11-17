@@ -8,6 +8,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import java.sql.Timestamp;
 import java.util.Objects;
@@ -33,7 +35,8 @@ public class Bookmarks {
     @Column(name = "attraction_id")
     private int attractionId;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
+    @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "user_id")
     private User user;
     

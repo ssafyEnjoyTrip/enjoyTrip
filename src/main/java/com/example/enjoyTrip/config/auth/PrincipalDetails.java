@@ -14,6 +14,7 @@ import com.example.enjoyTrip.entity.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -53,6 +54,10 @@ public class PrincipalDetails implements UserDetails {
     }
 
     public int getUserId(){ return user.getUserId();}
+
+    public String getEmail(){ return user.getEmail();}
+    public String getPhoneNum(){ return user.getPhoneNum();}
+    public Timestamp getRegisterTime(){ return user.getRegisterTime();}
     @Override
     public boolean isAccountNonExpired() {
         return true;

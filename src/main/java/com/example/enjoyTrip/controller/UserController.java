@@ -27,6 +27,18 @@ public class UserController {
 		return service.mypage(userId);
 	}
 
+	@PutMapping("/{userId}")
+	@ResponseBody
+	public String updateProfile(@PathVariable int userId, @RequestBody UserDto user){
+		return service.updateProfile(userId, user);
+	}
+
+	@PostMapping("/checkPassword")
+	@ResponseBody
+	public String checkPassword(@RequestBody UserDto user){
+		return service.checkPassword(user);
+	}
+
 	@GetMapping("/search/{keyword}")
 	@ResponseBody
 	public List<User> search(@PathVariable String keyword){
@@ -39,18 +51,10 @@ public class UserController {
 		return null;
 	}
 	
-
-	
-	@PutMapping("/{userId}")
-	public int update(@PathVariable int userId, UserDto dto) {
-//		return service.update(dto);
-		return 1;
-	}
-	
 	@DeleteMapping("/{userId}")
-	public int delete(@PathVariable int userId) {
-//		return service.delete(userId);
-		return 1;
+	@ResponseBody
+	public String delete(@PathVariable int userId) {
+		return service.delete(userId);
 	}
 	
 	@GetMapping("/likeList")
