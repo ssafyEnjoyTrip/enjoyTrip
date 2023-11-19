@@ -26,15 +26,16 @@ public class ArticleComment {
     @javax.persistence.Column(name = "comment_id")
     private int commentId;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
-    private User user;
-
     @Column(name = "comment")
     private String comment;
-    
-    @ManyToOne(fetch = FetchType.LAZY)
+
+    @Column(name="user_id")
+    private int userId;
+
+    @Column(name="comment_register_time")
+    private Timestamp commentRegisterTime;
+
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "article_id")
     private Article article;
-
 }

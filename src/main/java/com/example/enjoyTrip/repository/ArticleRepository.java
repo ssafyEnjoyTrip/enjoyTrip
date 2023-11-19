@@ -24,4 +24,6 @@ public interface ArticleRepository extends JpaRepository<Article, Integer>{
 
 
 	void deleteById(@Param("articleId") int articleId);
+
+
 }

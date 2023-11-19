@@ -41,9 +41,7 @@ public class Article {
     private Timestamp registerTime;
     
     @Column(name = "content", nullable = false)
-    private String content;   
-
-
+    private String content;
 
     @JoinColumn(name = "user_id")
     @ManyToOne

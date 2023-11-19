@@ -3,6 +3,7 @@ package com.example.enjoyTrip.service;
 import java.util.List;
 
 import com.example.enjoyTrip.dto.ListDto;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
@@ -12,10 +13,10 @@ import com.example.enjoyTrip.repository.ArticleRepository;
 import com.example.enjoyTrip.repository.IArticle;
 
 @Service
+@RequiredArgsConstructor
 public class ArticleServiceImpl implements ArticleService{
-	
-	@Autowired
-	ArticleRepository articleRepository;
+
+	private final ArticleRepository articleRepository;
 
 	@Override
 	public List<Article> list() {
