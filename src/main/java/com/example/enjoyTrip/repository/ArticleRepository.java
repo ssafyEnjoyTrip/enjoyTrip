@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import com.example.enjoyTrip.entity.Article;
+import com.example.enjoyTrip.entity.ArticleComment;
+
 import org.springframework.data.repository.query.Param;
 
 public interface ArticleRepository extends JpaRepository<Article, Integer>{
@@ -16,6 +18,8 @@ public interface ArticleRepository extends JpaRepository<Article, Integer>{
 			"Article AS a JOIN User AS u ON a.user.id = u.userId LEFT OUTER JOIN ArticleComment AS c " +
 			"ON a.articleId = c.article.articleId group by a.articleId")
 	List<IArticle> findList();
+	
+	List<Article> findByArticleId(int articleId);
 
 	@Query(value = "select a.articleId AS articleId, a.title AS title, a.registerTime AS registerTime, a.content AS content," +
 			" u.name AS name from " +
@@ -24,6 +28,4 @@ public interface ArticleRepository extends JpaRepository<Article, Integer>{
 
 
 	void deleteById(@Param("articleId") int articleId);
-
-
 }

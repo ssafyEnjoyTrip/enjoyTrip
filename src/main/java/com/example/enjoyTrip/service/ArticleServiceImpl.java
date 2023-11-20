@@ -23,13 +23,11 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class ArticleServiceImpl implements ArticleService{
 
-	@Autowired
-	UserRepository userRepository;
-
+	private final UserRepository userRepository;
 	private final ArticleRepository articleRepository;
 
 	@Override
-	public List<Article> list() {
+	public List<Article> findAll() {
 		return articleRepository.findAll();
 	}
 
@@ -84,7 +82,4 @@ public class ArticleServiceImpl implements ArticleService{
 		return userRepository.findById(userId)
 				.orElseThrow(() -> new RuntimeException("로그인 유저 정보가 없습니다"));
 	}
-
-
-
 }
