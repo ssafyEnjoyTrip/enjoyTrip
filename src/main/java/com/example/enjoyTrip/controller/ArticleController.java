@@ -32,10 +32,10 @@ public class ArticleController {
 	public List<Article> list(){
 		return articleService.findAll();
 	}
-	
+
 	@GetMapping("/{articleId}")
-	public IArticle detail(@PathVariable int articleId) {
-		return articleService.singleDetail(articleId);
+	public Article detail(@PathVariable int articleId) {
+		return articleService.detail(articleId);
 	}
 	
 	@PostMapping

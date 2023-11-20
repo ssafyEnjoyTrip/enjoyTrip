@@ -2,6 +2,7 @@ package com.example.enjoyTrip.service;
 
 import com.example.enjoyTrip.dto.MyPageResultDto;
 import com.example.enjoyTrip.dto.UserDto;
+import com.example.enjoyTrip.entity.Article;
 import com.example.enjoyTrip.entity.User;
 
 import java.util.List;

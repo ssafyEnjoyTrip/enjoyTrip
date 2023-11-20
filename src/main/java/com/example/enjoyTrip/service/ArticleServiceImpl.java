@@ -137,20 +137,21 @@ public class ArticleServiceImpl implements ArticleService{
 	}
 
 	@Override
-	public List<IArticle> findList() {
-		return articleRepository.findList();
-	}
-
-	@Override
-	public IArticle singleDetail(int articleId){
-		return articleRepository.singleDetail(articleId);
-	}
-
-	@Override
 	public void deleteById(int articleId) {
 		articleRepository.deleteById(articleId);
 		
 	}
+
+	@Override
+	public void increaseHeartCount(int articleId) {
+		articleRepository.incrementHeartCount(articleId);
+	}
+
+	@Override
+	public void decreaseHeartCount(int articleId) {
+		articleRepository.decrementHeartCount(articleId);
+	}
+
 
 
 	public User getUser() {

@@ -27,7 +27,6 @@ public class HeartController {
         return "success";
     }
 
-
     @PostMapping("/check/{articleId}")
     public Boolean checkRecommendations(@PathVariable int articleId) {
         return heartService.check(articleId);

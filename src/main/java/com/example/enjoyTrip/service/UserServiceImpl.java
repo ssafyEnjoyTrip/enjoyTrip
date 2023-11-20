@@ -3,11 +3,13 @@ package com.example.enjoyTrip.service;
 import com.example.enjoyTrip.dto.MyPageAttractionDto;
 import com.example.enjoyTrip.dto.MyPageResultDto;
 import com.example.enjoyTrip.dto.UserDto;
+import com.example.enjoyTrip.entity.Article;
 import com.example.enjoyTrip.entity.AttractionInfo;
 import com.example.enjoyTrip.entity.Bookmarks;
 import com.example.enjoyTrip.entity.User;
 import com.example.enjoyTrip.repository.AttractionInfoRepository;
 import com.example.enjoyTrip.repository.BookmarksRepository;
+import com.example.enjoyTrip.repository.HeartRepository;
 import com.example.enjoyTrip.repository.UserRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -20,6 +22,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -28,6 +31,7 @@ public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final BookmarksRepository bookmarksRepository;
     private final AttractionInfoRepository attractionInfoRepository;
+    private final HeartRepository heartRepository;
 
     @Override
     public List<User> list() {
@@ -86,6 +90,15 @@ public class UserServiceImpl implements UserService {
         }
         dto.setBookMarkAttractionList(list);
 
+        // 좋아요 게시글 가져오기
+        List<Article> favoriteArticleList = heartRepository
+                .findByUser(user)
+                .stream()
+                .filter(heart -> heart.getArticle() != null)
+                .map(heart -> heart.getArticle())
+                .collect(Collectors.toList());
+
+        dto.setMyPageArticleList(favoriteArticleList);
         return dto;
     }
 
