@@ -2,26 +2,29 @@ package com.example.enjoyTrip.service;
 
 import java.util.List;
 
-import com.example.enjoyTrip.config.auth.PrincipalDetails;
-import com.example.enjoyTrip.dto.ArticleDto;
-import com.example.enjoyTrip.entity.User;
-import com.example.enjoyTrip.repository.UserRepository;
-import lombok.RequiredArgsConstructor;
+import javax.transaction.Transactional;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import com.example.enjoyTrip.config.auth.PrincipalDetails;
+import com.example.enjoyTrip.dto.ArticleDto;
 import com.example.enjoyTrip.entity.Article;
+import com.example.enjoyTrip.entity.User;
 import com.example.enjoyTrip.repository.ArticleRepository;
 import com.example.enjoyTrip.repository.IArticle;
+import com.example.enjoyTrip.repository.UserRepository;
 
-import javax.transaction.Transactional;
+import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
 public class ArticleServiceImpl implements ArticleService{
 
-	private final UserRepository userRepository;
+	@Autowired
+	UserRepository userRepository;
 
 	private final ArticleRepository articleRepository;
 
