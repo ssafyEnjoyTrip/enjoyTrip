@@ -134,11 +134,22 @@ public class ArticleServiceImpl implements ArticleService{
 		return articleRepository.findByTitleLike( "%" + keyword + "%");
 	}
 
-
 	@Override
 	public void deleteById(int articleId) {
-		articleRepository.deleteById(articleId);		
+		articleRepository.deleteById(articleId);
+		
 	}
+
+	@Override
+	public void increaseHeartCount(int articleId) {
+		articleRepository.incrementHeartCount(articleId);
+	}
+
+	@Override
+	public void decreaseHeartCount(int articleId) {
+		articleRepository.decrementHeartCount(articleId);
+	}
+
 
 
 	public User getUser() {
