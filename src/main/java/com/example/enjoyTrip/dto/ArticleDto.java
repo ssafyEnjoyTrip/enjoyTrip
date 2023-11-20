@@ -1,6 +1,7 @@
 package com.example.enjoyTrip.dto;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -20,4 +21,6 @@ public class ArticleDto {
 	private Timestamp registerTime;
 	private int commentsCount;
 	private String content;
+
+	private List<ArticleFileDto> fileList;
 }

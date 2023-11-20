@@ -1,10 +1,17 @@
 package com.example.enjoyTrip.service;
 
+import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import javax.transaction.Transactional;
 
+import com.example.enjoyTrip.dto.ArticleFileDto;
+import com.example.enjoyTrip.entity.ArticleFile;
+import com.example.enjoyTrip.repository.ArticleFileRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
@@ -18,13 +25,24 @@ import com.example.enjoyTrip.repository.IArticle;
 import com.example.enjoyTrip.repository.UserRepository;
 
 import lombok.RequiredArgsConstructor;
-
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.apache.commons.io.FilenameUtils;
 @Service
 @RequiredArgsConstructor
 public class ArticleServiceImpl implements ArticleService{
 
+	@Value("${app.fileupload.uploadPath}")
+	String uploadPath;
+
+	@Value("${app.fileupload.uploadFolder}")
+	String uploadFolder;
+
 	private final UserRepository userRepository;
+
 	private final ArticleRepository articleRepository;
+
+	private final ArticleFileRepository articleFileRepository;
 
 	@Override
 	public List<Article> findAll() {
@@ -38,19 +56,78 @@ public class ArticleServiceImpl implements ArticleService{
 
 	@Override
 	@Transactional
-	public Article insert(ArticleDto dto) {
+	public String insert(ArticleDto dto, MultipartHttpServletRequest request) {
 
-		String title = dto.getTitle();
-		String content = dto.getContent();
-		Article article = new Article();
+		List<File> rollbackFileList = new ArrayList<>();
+		try {
+			String title = dto.getTitle();
+			String content = dto.getContent();
+			Article article = new Article();
 
-		User user = getUser();
-		System.out.println(user);
-		article.setUser(user);
-		article.setTitle(title);
-		article.setContent(content);
+			User user = getUser();
+			article.setUser(user);
+			article.setTitle(title);
+			article.setContent(content);
 
-		return articleRepository.save(article);
+			Article saved = articleRepository.save(article);// 일단 게시글 저장
+
+			List<MultipartFile> fileList = request.getFiles("file");
+
+			File uploadDir = new File(uploadPath + File.separator + uploadFolder);
+			if (!uploadDir.exists()) uploadDir.mkdir();
+
+			for (MultipartFile part : fileList) {
+
+				String fileName = part.getOriginalFilename();
+
+				//Random File Id
+				UUID uuid = UUID.randomUUID();
+
+				//file extension
+				String extension = FilenameUtils.getExtension(fileName); // vs FilenameUtils.getBaseName()
+
+				String savingFileName = uuid + "." + extension;
+
+				File destFile = new File(uploadPath + File.separator + uploadFolder + File.separator + savingFileName);
+
+				// transaction test #2 해결
+				// rollback 할 때 물리적으로 저장된 파일도 삭제하기 위해
+				rollbackFileList.add(destFile);
+
+				part.transferTo(destFile);
+
+				// Table Insert
+				ArticleFile articleFile = new ArticleFile();
+				articleFile.setArticle(saved);
+				articleFile.setFileName(fileName);
+				articleFile.setFileSize(part.getSize());
+				articleFile.setFileContentType(part.getContentType());
+				String articleFileUrl = uploadFolder + "/" + savingFileName;
+				articleFile.setFileUrl(articleFileUrl);
+
+				// transaction test #2
+				// 테이블에 insert + 물리적인 파일도 저장
+				// transaction 만 처리하면 테이블과 다르게 물리적으로 저장된 파일은 남아 있다.
+//                String s = null;
+//                s.length();
+
+				articleFileRepository.save(articleFile);
+			}
+
+			return "success";
+		} catch (Exception e) {
+			e.printStackTrace();
+
+			// transaction test #2 해결
+			// 물리적인 파일도 삭제해 준다.
+			for (File file : rollbackFileList) {
+				if (file.exists()) {
+					file.delete();
+				}
+			}
+
+			return "fail";
+		}
 	}
 
 
