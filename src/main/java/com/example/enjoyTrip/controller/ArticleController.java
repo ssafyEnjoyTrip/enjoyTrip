@@ -15,16 +15,18 @@ import com.example.enjoyTrip.entity.Article;
 import com.example.enjoyTrip.repository.IArticle;
 import com.example.enjoyTrip.service.ArticleService;
 
+import lombok.RequiredArgsConstructor;
+
 @RestController
 @RequestMapping("/article")
+@RequiredArgsConstructor
 public class ArticleController {
 	
-	@Autowired
-	ArticleService articleService;
+	private final ArticleService articleService;
 	
 	@GetMapping("/list")
-	public List<IArticle> list(){
-		return articleService.findList();
+	public List<Article> list(){
+		return articleService.findAll();
 	}
 	
 	@GetMapping("/{articleId}")
@@ -53,8 +55,6 @@ public class ArticleController {
 	public List<Article> search(@PathVariable String keyword){
 		return articleService.findByTitleLike(keyword);
 	}
-
-
 }
 
 

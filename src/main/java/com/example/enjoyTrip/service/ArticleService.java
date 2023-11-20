@@ -10,7 +10,7 @@ import org.springframework.data.repository.query.Param;
 
 // update 메소드는 없다길래 일단 나중에 구현
 public interface ArticleService {
-	List<Article> list();
+	List<Article> findAll();
 	Article detail(int articleId);
 
 	Article insert(ArticleDto dto);
@@ -20,4 +20,5 @@ public interface ArticleService {
 //	Article findByArticleId(int articleId);		
 	IArticle singleDetail(int articleId);
 	void deleteById(int articleId);
+	
 }
