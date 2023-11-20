@@ -4,8 +4,6 @@ import java.util.List;
 
 import com.example.enjoyTrip.dto.ArticleDto;
 import org.springframework.data.repository.query.Param;
-
-import com.example.enjoyTrip.dto.ListDto;
 import com.example.enjoyTrip.entity.Article;
 import com.example.enjoyTrip.repository.IArticle;
 import org.springframework.data.repository.query.Param;
@@ -22,5 +20,4 @@ public interface ArticleService {
 //	Article findByArticleId(int articleId);		
 	IArticle singleDetail(int articleId);
 	void deleteById(int articleId);
-
 }
