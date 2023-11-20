@@ -2,12 +2,7 @@ package com.example.enjoyTrip.entity;
 
 import javax.persistence.*;
 
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import java.sql.Timestamp;
 import java.util.Objects;
@@ -15,12 +10,14 @@ import java.util.Objects;
 @Entity
 @Getter
 @Setter
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @ToString
 @EqualsAndHashCode
+@Builder
 @javax.persistence.Table(name = "article_comment", schema = "enjoytrip", catalog = "")
 public class ArticleComment {
+
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     @javax.persistence.Column(name = "comment_id")
