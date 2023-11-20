@@ -48,5 +48,7 @@ public class Article {
     @JoinColumn(name = "user_id")
     @ManyToOne
     private User user;
-    
+
+    @Column(name="heart_count")
+    private int heartCount = 0;
 }
