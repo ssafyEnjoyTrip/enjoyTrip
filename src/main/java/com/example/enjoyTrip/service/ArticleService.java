@@ -3,8 +3,6 @@ package com.example.enjoyTrip.service;
 import java.util.List;
 
 import org.springframework.data.repository.query.Param;
-
-import com.example.enjoyTrip.dto.ListDto;
 import com.example.enjoyTrip.entity.Article;
 import com.example.enjoyTrip.repository.IArticle;
 import org.springframework.data.repository.query.Param;
@@ -20,4 +18,5 @@ public interface ArticleService {
 //	Article findByArticleId(int articleId);		
 	IArticle singleDetail(int articleId);
 	void deleteById(int articleId);
+	Article findById(int articleId);
 }

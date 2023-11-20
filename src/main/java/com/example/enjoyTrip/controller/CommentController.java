@@ -1,20 +1,27 @@
 package com.example.enjoyTrip.controller;
 
-import com.example.enjoyTrip.entity.ArticleComment;
-import com.example.enjoyTrip.repository.ArticleCommentRepository;
-import com.example.enjoyTrip.service.CommentService;
-import jdk.nashorn.internal.ir.annotations.Ignore;
-import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.example.enjoyTrip.dto.CommentSaveDto;
+import com.example.enjoyTrip.entity.ArticleComment;
+import com.example.enjoyTrip.service.ArticleService;
+import com.example.enjoyTrip.service.CommentService;
+
+import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequestMapping("/comment")
 @RequiredArgsConstructor
 public class CommentController {
     private final CommentService commentService;
+    private final ArticleService articleService;
 
     @GetMapping("/")
     List<ArticleComment> comment(){
@@ -30,11 +37,11 @@ public class CommentController {
     }
 
     @PostMapping("/save")
-    public ArticleComment commentSave(@RequestBody ArticleComment comment){
-        System.out.println(comment);
-
-
-        return null;
-        //return commentService.save(comment);
+    public ArticleComment commentSave(@RequestBody CommentSaveDto dto){
+    	ArticleComment comment = new ArticleComment();
+    	comment.setComment(dto.getComment());
+    	comment.setUserId(dto.getUserId());
+//    	comment.getArticle(articleService.findById(dto.getArticleId()));
+        return commentService.save(comment);
     }
 }

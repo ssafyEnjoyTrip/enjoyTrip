@@ -46,5 +46,4 @@ public class Article {
     @JoinColumn(name = "user_id")
     @ManyToOne
     private User user;
-    
 }

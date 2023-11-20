@@ -1,8 +1,6 @@
 package com.example.enjoyTrip.service;
 
 import java.util.List;
-
-import com.example.enjoyTrip.dto.ListDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
@@ -61,6 +59,11 @@ public class ArticleServiceImpl implements ArticleService{
 	public void deleteById(int articleId) {
 		articleRepository.deleteById(articleId);
 		
+	}
+
+	@Override
+	public Article findById(int articleId) {
+		return articleRepository.findById(articleId).orElse(null);
 	}
 
 }
