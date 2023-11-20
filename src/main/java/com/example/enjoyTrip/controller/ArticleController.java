@@ -1,8 +1,11 @@
 package com.example.enjoyTrip.controller;
 
+import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.example.enjoyTrip.dto.ArticleDto;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,13 +17,14 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.enjoyTrip.entity.Article;
 import com.example.enjoyTrip.repository.IArticle;
 import com.example.enjoyTrip.service.ArticleService;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 @RestController
 @RequestMapping("/article")
+@RequiredArgsConstructor
 public class ArticleController {
-	
-	@Autowired
-	ArticleService articleService;
+
+	private final ArticleService articleService;
 	
 	@GetMapping("/list")
 	public List<IArticle> list(){
@@ -32,15 +36,9 @@ public class ArticleController {
 		return articleService.singleDetail(articleId);
 	}
 	
-	@PostMapping("/insert")
-	public String insert(@RequestBody ArticleDto dto) {
-		Article article = articleService.insert(dto);
-
-		if( article == null){
-			return "fail";
-		}else{
-			return "success";
-		}
+	@PostMapping
+	public String insert(ArticleDto dto, MultipartHttpServletRequest request) {
+		return articleService.insert(dto, request);
 	}
 	
 	@DeleteMapping("/{articleId}")
