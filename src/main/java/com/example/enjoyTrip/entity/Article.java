@@ -20,6 +20,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import org.hibernate.annotations.CreationTimestamp;
 
 @Entity
 @Getter
@@ -38,6 +39,7 @@ public class Article {
     private String title;
     
     @Column(name = "register_time")
+    @CreationTimestamp
     private Timestamp registerTime;
     
     @Column(name = "content", nullable = false)
@@ -48,5 +50,7 @@ public class Article {
     @JoinColumn(name = "user_id")
     @ManyToOne
     private User user;
+
+
     
 }

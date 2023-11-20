@@ -2,20 +2,32 @@ package com.example.enjoyTrip.service;
 
 import java.util.List;
 
+import com.example.enjoyTrip.config.auth.PrincipalDetails;
+import com.example.enjoyTrip.dto.ArticleDto;
 import com.example.enjoyTrip.dto.ListDto;
+import com.example.enjoyTrip.entity.User;
+import com.example.enjoyTrip.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import com.example.enjoyTrip.entity.Article;
 import com.example.enjoyTrip.repository.ArticleRepository;
 import com.example.enjoyTrip.repository.IArticle;
 
+import javax.transaction.Transactional;
+
 @Service
 public class ArticleServiceImpl implements ArticleService{
 	
 	@Autowired
 	ArticleRepository articleRepository;
+
+	@Autowired
+	UserRepository userRepository;
 
 	@Override
 	public List<Article> list() {
@@ -28,16 +40,20 @@ public class ArticleServiceImpl implements ArticleService{
 	}
 
 	@Override
-	public int insert(Article dto) {
-		Article isDup = detail(dto.getArticleId());
-		
-		// 중복 확인 중복인 값이 없다면 1을 리턴
-		if(isDup == null) {
-			// 저장하고 즉시 반영
-			articleRepository.saveAndFlush(isDup);
-			return 1;
-		}
-		return 0;
+	@Transactional
+	public Article insert(ArticleDto dto) {
+
+		String title = dto.getTitle();
+		String content = dto.getContent();
+		Article article = new Article();
+
+		User user = getUser();
+		System.out.println(user);
+		article.setUser(user);
+		article.setTitle(title);
+		article.setContent(content);
+
+		return articleRepository.save(article);
 	}
 
 
@@ -61,5 +77,15 @@ public class ArticleServiceImpl implements ArticleService{
 		articleRepository.deleteById(articleId);
 		
 	}
+
+
+	public User getUser() {
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		int userId = ((PrincipalDetails) authentication.getPrincipal()).getUserId(); // 현재 로그인한 회원 id
+		return userRepository.findById(userId)
+				.orElseThrow(() -> new RuntimeException("로그인 유저 정보가 없습니다"));
+	}
+
+
 
 }
