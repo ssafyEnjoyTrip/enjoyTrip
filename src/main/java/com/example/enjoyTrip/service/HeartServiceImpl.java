@@ -36,6 +36,8 @@ public class HeartServiceImpl implements HeartService{
         heart.setArticle(article);
         heart.setUser(user);
 
+        // count 1증가
+        articleRepository.incrementHeartCount(articleId);
         return heartRepository.save(heart);
     }
 
@@ -49,6 +51,9 @@ public class HeartServiceImpl implements HeartService{
 
         Heart heart = heartRepository.findByUserAndArticle(user, article);
         if( heart != null){ // heart가 있으면 지우자
+
+            // count 1감소
+            articleRepository.decrementHeartCount(articleId);
             heartRepository.delete(heart);
         }
     }
