@@ -2,6 +2,7 @@ package com.example.enjoyTrip.service;
 
 import java.util.List;
 
+import com.example.enjoyTrip.dto.ArticleDto;
 import org.springframework.data.repository.query.Param;
 
 import com.example.enjoyTrip.dto.ListDto;
@@ -13,11 +14,13 @@ import org.springframework.data.repository.query.Param;
 public interface ArticleService {
 	List<Article> list();
 	Article detail(int articleId);
-	int insert(Article dto);
+
+	Article insert(ArticleDto dto);
 	List<Article> findByTitleLike(String keyword);
 	List<IArticle> findList();
 //	List<Article> findByUser();
 //	Article findByArticleId(int articleId);		
 	IArticle singleDetail(int articleId);
 	void deleteById(int articleId);
+
 }

@@ -2,6 +2,7 @@ package com.example.enjoyTrip.controller;
 
 import java.util.List;
 
+import com.example.enjoyTrip.dto.ArticleDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -35,9 +36,14 @@ public class ArticleController {
 	}
 	
 	@PostMapping("/insert")
-	public int insert(@RequestBody Article dto) {
-		articleService.insert(dto);
-		return 1;
+	public String insert(@RequestBody ArticleDto dto) {
+		Article article = articleService.insert(dto);
+
+		if( article == null){
+			return "fail";
+		}else{
+			return "success";
+		}
 	}
 	
 	@DeleteMapping("/{articleId}")
