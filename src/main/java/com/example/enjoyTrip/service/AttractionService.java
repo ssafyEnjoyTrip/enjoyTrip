@@ -9,6 +9,5 @@ public interface AttractionService {
 
     List<AttractionDetail> list();
     AttractionDetail detail(int contentId);
-
     List<AttractionInfo> readCountTop5List();
 }

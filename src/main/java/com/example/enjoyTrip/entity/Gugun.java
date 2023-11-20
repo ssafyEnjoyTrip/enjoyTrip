@@ -3,6 +3,7 @@ package com.example.enjoyTrip.entity;
 import javax.persistence.*;
 
 import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -17,6 +18,7 @@ import java.util.Objects;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
+@EqualsAndHashCode
 @IdClass(com.example.enjoyTrip.entity.GugunPK.class)
 public class Gugun {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,16 +35,4 @@ public class Gugun {
     @Column(name = "sido_code")
     private int sidoCode;
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Gugun gugun = (Gugun) o;
-        return gugunCode == gugun.gugunCode && sidoCode == gugun.sidoCode && Objects.equals(gugunName, gugun.gugunName);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(gugunCode, gugunName, sidoCode);
-    }
 }

@@ -1,15 +1,22 @@
 package com.example.enjoyTrip.controller;
 
-import com.example.enjoyTrip.entity.AttractionDetail;
-import com.example.enjoyTrip.entity.AttractionInfo;
-import com.example.enjoyTrip.service.AttractionService;
-import lombok.RequiredArgsConstructor;
+import java.util.List;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
+import com.example.enjoyTrip.entity.AttractionDetail;
+import com.example.enjoyTrip.entity.AttractionInfo;
+import com.example.enjoyTrip.repository.AttractionInfoRepository;
+import com.example.enjoyTrip.repository.AttractionRepository;
+import com.example.enjoyTrip.service.AttractionService;
+
+import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequestMapping("/attractions")
@@ -17,20 +24,26 @@ import java.util.List;
 public class AttractionController {
 
     private final AttractionService service;
+    private final AttractionRepository AttractionRepository;
+    private final AttractionInfoRepository attractionInfoRepository;
 
     @GetMapping("/")
-    public List<AttractionDetail> attractionList(){
-        return service.list();
+    public Page<AttractionInfo> attractionList(
+    		@RequestParam(defaultValue="0") int page,
+    		@RequestParam(defaultValue="12") int size
+    		){
+    	  PageRequest pageRequest = PageRequest.of(page, size);
+        return attractionInfoRepository.findAll(pageRequest);
     }
 
-    @GetMapping("/{contentId}")
-    public AttractionDetail attractionDetail(@PathVariable int contentId){
-        return service.detail(contentId);
+    @GetMapping("/{articleId}")
+    public AttractionDetail attractionDetail(@PathVariable int articleId){
+        return service.detail(articleId);
     }
 
     @GetMapping("/readCount")
     public List<AttractionInfo> attractionListCount(){
         return service.readCountTop5List();
     }
-
+    
 }
