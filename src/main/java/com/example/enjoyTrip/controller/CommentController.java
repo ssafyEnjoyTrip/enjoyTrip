@@ -2,6 +2,7 @@ package com.example.enjoyTrip.controller;
 
 import java.util.List;
 
+import com.example.enjoyTrip.repository.UserRepository;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,6 +25,7 @@ public class CommentController {
     private final CommentService commentService;
     private final ArticleRepository articleRepository;
     private final ArticleCommentRepository commentReoisitory;
+    private final UserRepository userRepository;
 
     @GetMapping("/")
     List<ArticleComment> comment(){
@@ -43,7 +45,7 @@ public class CommentController {
     	System.out.println( "Comment Controller" + dto);
     	ArticleComment comment = new ArticleComment();
     	comment.setComment(dto.getComment());
-    	comment.setUserId(dto.getUserId());
+    	comment.setUser(userRepository.findById(dto.getUserId()).orElse(null));
     	comment.setArticle(articleRepository.findById(dto.getArticleId()).orElse(null));
     	System.out.println(comment);
         return commentReoisitory.save(comment);

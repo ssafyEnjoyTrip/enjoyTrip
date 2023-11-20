@@ -20,6 +20,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
 
 @Entity
@@ -50,5 +51,6 @@ public class Article {
     private User user;
 
     @Column(name="heart_count")
-    private int heartCount = 0;
+    @ColumnDefault("0")
+    private int heartCount;
 }

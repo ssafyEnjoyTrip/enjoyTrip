@@ -24,7 +24,6 @@ import lombok.RequiredArgsConstructor;
 public class AttractionController {
 
     private final AttractionService service;
-    private final AttractionRepository AttractionRepository;
     private final AttractionInfoRepository attractionInfoRepository;
 
     @GetMapping("/")
@@ -37,8 +36,8 @@ public class AttractionController {
     }
 
     @GetMapping("/{articleId}")
-    public AttractionDetail attractionDetail(@PathVariable int articleId){
-        return service.detail(articleId);
+    public AttractionInfo attractionDetail(@PathVariable int articleId){
+        return attractionInfoRepository.findById(articleId).orElse(null);
     }
 
     @GetMapping("/readCount")
