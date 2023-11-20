@@ -1,12 +1,7 @@
 package com.example.enjoyTrip.service;
 
 import java.util.List;
-
-import com.example.enjoyTrip.config.auth.PrincipalDetails;
-import com.example.enjoyTrip.dto.ArticleDto;
-import com.example.enjoyTrip.dto.ListDto;
-import com.example.enjoyTrip.entity.User;
-import com.example.enjoyTrip.repository.UserRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.security.core.Authentication;
@@ -21,13 +16,13 @@ import com.example.enjoyTrip.repository.IArticle;
 import javax.transaction.Transactional;
 
 @Service
+@RequiredArgsConstructor
 public class ArticleServiceImpl implements ArticleService{
-	
-	@Autowired
-	ArticleRepository articleRepository;
 
 	@Autowired
 	UserRepository userRepository;
+
+	private final ArticleRepository articleRepository;
 
 	@Override
 	public List<Article> list() {
