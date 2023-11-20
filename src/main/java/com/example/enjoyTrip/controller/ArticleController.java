@@ -40,7 +40,8 @@ public class ArticleController {
 	
 	@PostMapping
 	public String insert(ArticleDto dto, MultipartHttpServletRequest request) {
-		return articleService.insert(dto, request);
+		System.out.println(dto);
+		return null;
 	}
 	
 	@DeleteMapping("/{articleId}")
