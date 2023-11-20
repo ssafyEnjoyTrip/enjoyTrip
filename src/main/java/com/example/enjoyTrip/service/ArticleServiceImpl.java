@@ -7,27 +7,25 @@ import java.util.UUID;
 
 import javax.transaction.Transactional;
 
-import com.example.enjoyTrip.dto.ArticleFileDto;
-import com.example.enjoyTrip.entity.ArticleFile;
-import com.example.enjoyTrip.repository.ArticleFileRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.example.enjoyTrip.config.auth.PrincipalDetails;
 import com.example.enjoyTrip.dto.ArticleDto;
 import com.example.enjoyTrip.entity.Article;
+import com.example.enjoyTrip.entity.ArticleFile;
 import com.example.enjoyTrip.entity.User;
+import com.example.enjoyTrip.repository.ArticleFileRepository;
 import com.example.enjoyTrip.repository.ArticleRepository;
 import com.example.enjoyTrip.repository.IArticle;
 import com.example.enjoyTrip.repository.UserRepository;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
-import org.apache.commons.io.FilenameUtils;
 @Service
 @RequiredArgsConstructor
 public class ArticleServiceImpl implements ArticleService{
@@ -136,20 +134,10 @@ public class ArticleServiceImpl implements ArticleService{
 		return articleRepository.findByTitleLike( "%" + keyword + "%");
 	}
 
-	@Override
-	public List<IArticle> findList() {
-		return articleRepository.findList();
-	}
-
-	@Override
-	public IArticle singleDetail(int articleId){
-		return articleRepository.singleDetail(articleId);
-	}
 
 	@Override
 	public void deleteById(int articleId) {
-		articleRepository.deleteById(articleId);
-		
+		articleRepository.deleteById(articleId);		
 	}
 
 

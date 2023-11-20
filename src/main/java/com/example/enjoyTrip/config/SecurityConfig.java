@@ -33,7 +33,7 @@ public class SecurityConfig {
 		http.csrf().disable(); // csrf 비활성화. csrf가 켜져있으면 form 태그로 요청시 csrf 토큰이 추가된다.
 		// 그래서 서버쪽에서 만들어준 form 태그로만 요청이 가능하게 된다.
 		http.authorizeRequests()
-		.antMatchers("/attractions/**").authenticated() // "/attractions"로 가면 인증해야된다.
+		//.antMatchers("/attractions/**").authenticated() // "/attractions"로 가면 인증해야된다.
 		.antMatchers("/manager/**").access("hasAnyRole('ROLE_MANAGER', 'ROLE_ADMIN')")
 		.antMatchers("/admin/**").access("hasRole('ROLE_ADMIN')")
 		
