@@ -6,6 +6,8 @@ import com.example.enjoyTrip.dto.ArticleResultDto;
 import com.example.enjoyTrip.entity.Article;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import java.util.List;
+
 public interface ArticleService {
 	ArticleResultDto findAll(ArticleParamDto articleParamDto);
 	ArticleResultDto findByTitleLike(ArticleParamDto articleParamDto);
@@ -14,5 +16,7 @@ public interface ArticleService {
 	String insert(ArticleDto dto, MultipartHttpServletRequest request);
 
 	void deleteById(int articleId);
+
+
 	
 }

@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.example.enjoyTrip.dto.AttractionParamDto;
 import com.example.enjoyTrip.dto.AttractionResultDto;
+import com.example.enjoyTrip.dto.SummaryAttractionDto;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -46,5 +47,9 @@ public class AttractionController {
     public List<AttractionInfo> attractionListCount(){
         return attractionService.readCountTop5List();
     }
-    
+
+    @GetMapping("/randomAttraction")
+    public List<SummaryAttractionDto> randomAttraction(){
+        return attractionService.randomAttraction();
+    }
 }

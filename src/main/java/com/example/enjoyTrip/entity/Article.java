@@ -4,15 +4,7 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -53,4 +45,9 @@ public class Article {
     @Column(name="heart_count")
     @ColumnDefault("0")
     private int heartCount;
+
+    // 내가 관리하려는 Entity의 컬럼 명을 명시해줘야 한다!
+    @OneToMany(mappedBy = "articleId")
+    @PrimaryKeyJoinColumn
+    List<ArticleFile> articleFiles = new ArrayList<>();
 }

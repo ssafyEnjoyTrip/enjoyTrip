@@ -1,9 +1,6 @@
 package com.example.enjoyTrip.service;
 
-import com.example.enjoyTrip.dto.ArticleParamDto;
-import com.example.enjoyTrip.dto.ArticleResultDto;
-import com.example.enjoyTrip.dto.AttractionParamDto;
-import com.example.enjoyTrip.dto.AttractionResultDto;
+import com.example.enjoyTrip.dto.*;
 import com.example.enjoyTrip.entity.AttractionDetail;
 import com.example.enjoyTrip.entity.AttractionInfo;
 
@@ -17,4 +14,5 @@ public interface AttractionService {
     List<AttractionDetail> list();
     AttractionInfo detail(int contentId);
     List<AttractionInfo> readCountTop5List();
+    List<SummaryAttractionDto> randomAttraction();
 }

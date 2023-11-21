@@ -122,7 +122,7 @@ public class ArticleServiceImpl implements ArticleService{
 
 				// Table Insert
 				ArticleFile articleFile = new ArticleFile();
-				articleFile.setArticle(saved);
+				articleFile.setArticleId(saved.getArticleId());
 				articleFile.setFileName(fileName);
 				articleFile.setFileSize(part.getSize());
 				articleFile.setFileContentType(part.getContentType());
