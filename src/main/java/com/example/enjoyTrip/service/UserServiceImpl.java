@@ -95,10 +95,10 @@ public class UserServiceImpl implements UserService {
                 .collect(Collectors.toList());
 
         // 내가 쓴 게시글 가져오기
-        List<Article> allByUser = articleRepository.findAllByUser(user);
+        List<Article> allByUser = articleRepository.findAllByUserOrderByRegisterTimeDesc(user);
 
         // 내가 쓴 댓글 가져오기
-        List<ArticleComment> articleCommentList = articleCommentRepository.findAllByUserId(userId);
+        List<ArticleComment> articleCommentList = articleCommentRepository.findAllByUserUserId(userId);
 
         // 넣기
         dto.setBookMarkAttractionList(list);

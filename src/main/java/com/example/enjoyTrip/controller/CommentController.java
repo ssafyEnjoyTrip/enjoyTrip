@@ -23,15 +23,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class CommentController {
     private final CommentService commentService;
-    private final ArticleRepository articleRepository;
-    private final ArticleCommentRepository commentReoisitory;
-    private final UserRepository userRepository;
 
-    @GetMapping("/")
-    List<ArticleComment> comment(){
-        System.out.println("TEST");
-        return commentService.findAll();
-    }
 
     @GetMapping("/{articleId}")
     public List<ArticleComment> articleComment(@PathVariable int articleId){
@@ -40,14 +32,8 @@ public class CommentController {
         return comment;
     }
 
-    @PostMapping("/save")
+    @PostMapping
     public ArticleComment commentSave(@RequestBody CommentSaveDto dto){
-    	System.out.println( "Comment Controller" + dto);
-    	ArticleComment comment = new ArticleComment();
-    	comment.setComment(dto.getComment());
-    	comment.setUser(userRepository.findById(dto.getUserId()).orElse(null));
-    	comment.setArticle(articleRepository.findById(dto.getArticleId()).orElse(null));
-    	System.out.println(comment);
-        return commentReoisitory.save(comment);
+        return commentService.insert(dto);
     }
 }
