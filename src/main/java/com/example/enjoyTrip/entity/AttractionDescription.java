@@ -35,4 +35,6 @@ public class AttractionDescription {
     @Column(name = "telname")
     private String telname;
 
+
+
 }

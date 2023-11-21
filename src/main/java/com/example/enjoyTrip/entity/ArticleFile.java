@@ -2,6 +2,8 @@ package com.example.enjoyTrip.entity;
 
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
@@ -21,6 +23,7 @@ public class ArticleFile {
     private int Id;
 
     @JoinColumn(name = "article_id")
+    @OnDelete(action= OnDeleteAction.CASCADE)
     @ManyToOne
     private Article article;
 
