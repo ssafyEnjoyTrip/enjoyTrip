@@ -7,8 +7,13 @@ import java.util.UUID;
 
 import javax.transaction.Transactional;
 
+import com.example.enjoyTrip.dto.ArticleParamDto;
+import com.example.enjoyTrip.dto.ArticleResultDto;
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
@@ -35,6 +40,8 @@ public class ArticleServiceImpl implements ArticleService{
 
 	@Value("${app.fileupload.uploadFolder}")
 	String uploadFolder;
+	private final int SUCCESS = 1;
+	private final int FAIL = -1;
 
 	private final UserRepository userRepository;
 
@@ -43,8 +50,27 @@ public class ArticleServiceImpl implements ArticleService{
 	private final ArticleFileRepository articleFileRepository;
 
 	@Override
-	public List<Article> findAll() {
-		return articleRepository.findAll();
+	public ArticleResultDto findAll(ArticleParamDto articleParamDto) {
+		ArticleResultDto dto = new ArticleResultDto();
+
+		try {
+			int page = articleParamDto.getOffset() / articleParamDto.getLimit();
+			Pageable pageable = PageRequest.of(page, articleParamDto.getLimit());
+
+			Page<Article> articlePage = articleRepository.findAll(pageable);
+			List<Article> content = articlePage.getContent();
+
+			int count = (int) articleRepository.count();
+			dto.setList(content);
+			dto.setCount(count);
+			dto.setResult(SUCCESS);
+
+		}catch(Exception e) {
+			e.printStackTrace();
+			dto.setResult(FAIL);
+		}
+
+		return dto;
 	}
 
 	@Override
@@ -130,8 +156,30 @@ public class ArticleServiceImpl implements ArticleService{
 
 
 	@Override
-	public List<Article> findByTitleLike(String keyword) {
-		return articleRepository.findByTitleLike( "%" + keyword + "%");
+	public ArticleResultDto findByTitleLike(ArticleParamDto articleParamDto) {
+		ArticleResultDto dto = new ArticleResultDto();
+
+		try {
+			String searchWord = articleParamDto.getSearchWord();
+			int page = articleParamDto.getOffset() / articleParamDto.getLimit();
+			Pageable pageable = PageRequest.of(page, articleParamDto.getLimit());
+
+			Page<Article> articlePage = articleRepository.findBySearchWord(searchWord, pageable);
+			List<Article> content = articlePage.getContent();
+
+			long totalCount = articlePage.getTotalElements();
+			System.out.println(totalCount);
+			dto.setList(content);
+			dto.setCount((int) totalCount);
+			dto.setResult(SUCCESS);
+
+		}catch(Exception e) {
+			e.printStackTrace();
+			dto.setResult(FAIL);
+		}
+
+		return dto;
+
 	}
 
 	@Override

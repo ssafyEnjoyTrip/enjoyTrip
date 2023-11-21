@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.example.enjoyTrip.dto.ArticleDto;
+import com.example.enjoyTrip.dto.ArticleParamDto;
+import com.example.enjoyTrip.dto.ArticleResultDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -28,9 +30,15 @@ public class ArticleController {
 
 	private final ArticleService articleService;
 	
-	@GetMapping("/list")
-	public List<Article> list(){
-		return articleService.findAll();
+	@GetMapping
+	public ArticleResultDto list(ArticleParamDto articleParamDto){
+
+		if( articleParamDto.getSearchWord() != null ) {
+			return articleService.findByTitleLike(articleParamDto);
+		}else {
+			return articleService.findAll(articleParamDto);
+		}
+
 	}
 
 	@GetMapping("/{articleId}")
@@ -49,10 +57,10 @@ public class ArticleController {
 		System.out.println("삭제되었나요");
 	}
 	
-	@PostMapping("/{keyword}")
-	public List<Article> search(@PathVariable String keyword){
-		return articleService.findByTitleLike(keyword);
-	}
+//	@PostMapping("/{keyword}")
+//	public List<Article> search(@PathVariable String keyword){
+//		return articleService.findByTitleLike(keyword);
+//	}
 }
 
 
