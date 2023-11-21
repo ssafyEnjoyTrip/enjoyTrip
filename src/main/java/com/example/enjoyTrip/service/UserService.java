@@ -14,12 +14,9 @@ public interface UserService {
     List<User> findByNameLike(String keyword);
     User findByEmail(String Email);
     String join(UserDto dto);
-
     MyPageResultDto mypage(int userId);
-
     String updateProfile(int userId, UserDto user);
-
     String checkPassword(UserDto dto);
-
     String delete(int userId);
+
 }

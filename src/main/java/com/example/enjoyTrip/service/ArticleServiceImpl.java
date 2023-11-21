@@ -140,18 +140,6 @@ public class ArticleServiceImpl implements ArticleService{
 		
 	}
 
-	@Override
-	public void increaseHeartCount(int articleId) {
-		articleRepository.incrementHeartCount(articleId);
-	}
-
-	@Override
-	public void decreaseHeartCount(int articleId) {
-		articleRepository.decrementHeartCount(articleId);
-	}
-
-
-
 	public User getUser() {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		int userId = ((PrincipalDetails) authentication.getPrincipal()).getUserId(); // 현재 로그인한 회원 id

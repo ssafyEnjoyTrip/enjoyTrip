@@ -2,6 +2,7 @@ package com.example.enjoyTrip.repository;
 
 import java.util.List;
 
+import com.example.enjoyTrip.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -14,10 +15,8 @@ import javax.transaction.Transactional;
 
 public interface ArticleRepository extends JpaRepository<Article, Integer>{
 	List<Article> findByTitleLike(String keyword);
-
-	List<Article> findByArticleId(int articleId);
 	void deleteById(@Param("articleId") int articleId);
-
+	List<Article> findAllByUser(User user);
 
 	@Modifying
 	@Transactional

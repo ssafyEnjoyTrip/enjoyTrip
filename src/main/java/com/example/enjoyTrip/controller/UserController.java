@@ -45,30 +45,12 @@ public class UserController {
 		return service.findByNameLike("%" + keyword + "%");
 	}
 
-	@GetMapping("/interceptTest")
-	public String test(HttpSession session) {
-		session.setAttribute("user", "Ok");
-		return null;
-	}
-	
 	@DeleteMapping("/{userId}")
 	@ResponseBody
 	public String delete(@PathVariable int userId) {
 		return service.delete(userId);
 	}
-	
-	@GetMapping("/likeList")
-	public List<AttractionDto> likeList(int userId){
-//		List<AttractionDto> aList = service.likeList(userId);
-		return null;
-	}
-	
-	@GetMapping("/subscribeList")
-	public List<AttractionDto> subscribeList(int userId){
-//		List<AttractionDto> aList = service.subscribeList;
-		return null;
-	}
-	
+
 	
 	
 }
