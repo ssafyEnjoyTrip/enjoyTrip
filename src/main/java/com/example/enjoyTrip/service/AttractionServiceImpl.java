@@ -1,8 +1,6 @@
 package com.example.enjoyTrip.service;
 
-import com.example.enjoyTrip.dto.ArticleResultDto;
-import com.example.enjoyTrip.dto.AttractionParamDto;
-import com.example.enjoyTrip.dto.AttractionResultDto;
+import com.example.enjoyTrip.dto.*;
 import com.example.enjoyTrip.entity.Article;
 import com.example.enjoyTrip.entity.AttractionDetail;
 import com.example.enjoyTrip.entity.AttractionInfo;
@@ -13,7 +11,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.w3c.dom.Attr;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -90,5 +90,20 @@ public class AttractionServiceImpl implements AttractionService{
     @Override
     public List<AttractionInfo> readCountTop5List() {
         return attractionInfoRepository.findTop5ByOrderByReadcountDesc();
+    }
+
+    @Override
+    public List<SummaryAttractionDto> randomAttraction() {
+        List<AttractionInfo> attractionInfos= attractionInfoRepository.randomRecommendAttraction();
+        List<SummaryAttractionDto> dtos = new ArrayList<>();
+
+        for(AttractionInfo info : attractionInfos){
+            dtos.add(SummaryAttractionDto.builder()
+                    .attractionId(info.getAttractionId())
+                    .firstImage(info.getFirstImage())
+                    .title(info.getTitle())
+                    .build());
+        }
+        return dtos;
     }
 }
