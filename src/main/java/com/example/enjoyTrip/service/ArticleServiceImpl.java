@@ -168,7 +168,6 @@ public class ArticleServiceImpl implements ArticleService{
 			List<Article> content = articlePage.getContent();
 
 			long totalCount = articlePage.getTotalElements();
-			System.out.println(totalCount);
 			dto.setList(content);
 			dto.setCount((int) totalCount);
 			dto.setResult(SUCCESS);

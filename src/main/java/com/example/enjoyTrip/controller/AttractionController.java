@@ -2,6 +2,8 @@ package com.example.enjoyTrip.controller;
 
 import java.util.List;
 
+import com.example.enjoyTrip.dto.AttractionParamDto;
+import com.example.enjoyTrip.dto.AttractionResultDto;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,26 +25,26 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class AttractionController {
 
-    private final AttractionService service;
-    private final AttractionInfoRepository attractionInfoRepository;
+    private final AttractionService attractionService;
 
-    @GetMapping("/")
-    public Page<AttractionInfo> attractionList(
-    		@RequestParam(defaultValue="0") int page,
-    		@RequestParam(defaultValue="12") int size
-    		){
-    	  PageRequest pageRequest = PageRequest.of(page, size);
-        return attractionInfoRepository.findAll(pageRequest);
+    @GetMapping
+    public AttractionResultDto attractionList(AttractionParamDto attractionParamDto){
+
+        if( attractionParamDto.getSearchWord() != null ) {
+            return attractionService.findByTitleLike(attractionParamDto);
+        }else {
+            return attractionService.findAll(attractionParamDto);
+        }
     }
 
-    @GetMapping("/{articleId}")
-    public AttractionInfo attractionDetail(@PathVariable int articleId){
-        return attractionInfoRepository.findById(articleId).orElse(null);
+    @GetMapping("/{attractionId}")
+    public AttractionInfo attractionDetail(@PathVariable int attractionId){
+        return attractionService.detail(attractionId);
     }
 
     @GetMapping("/readCount")
     public List<AttractionInfo> attractionListCount(){
-        return service.readCountTop5List();
+        return attractionService.readCountTop5List();
     }
     
 }
