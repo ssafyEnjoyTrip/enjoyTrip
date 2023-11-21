@@ -69,4 +69,8 @@ public class AttractionInfo {
     @Column(name = "mlevel")
     private String mlevel;
 
+    @OneToOne
+    @PrimaryKeyJoinColumn
+    private AttractionDescription attractionDescription;
+
 }

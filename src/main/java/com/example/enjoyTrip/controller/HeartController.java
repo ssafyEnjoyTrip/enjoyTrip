@@ -16,7 +16,6 @@ public class HeartController {
     @PostMapping("/{articleId}")
     public String createHeart(@PathVariable int articleId){
         heartService.insert(articleId);
-
         return "success";
     }
 
