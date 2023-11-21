@@ -3,14 +3,8 @@ package com.example.enjoyTrip.service;
 import com.example.enjoyTrip.dto.MyPageAttractionDto;
 import com.example.enjoyTrip.dto.MyPageResultDto;
 import com.example.enjoyTrip.dto.UserDto;
-import com.example.enjoyTrip.entity.Article;
-import com.example.enjoyTrip.entity.AttractionInfo;
-import com.example.enjoyTrip.entity.Bookmarks;
-import com.example.enjoyTrip.entity.User;
-import com.example.enjoyTrip.repository.AttractionInfoRepository;
-import com.example.enjoyTrip.repository.BookmarksRepository;
-import com.example.enjoyTrip.repository.HeartRepository;
-import com.example.enjoyTrip.repository.UserRepository;
+import com.example.enjoyTrip.entity.*;
+import com.example.enjoyTrip.repository.*;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -32,6 +26,8 @@ public class UserServiceImpl implements UserService {
     private final BookmarksRepository bookmarksRepository;
     private final AttractionInfoRepository attractionInfoRepository;
     private final HeartRepository heartRepository;
+    private final ArticleRepository articleRepository;
+    private final ArticleCommentRepository articleCommentRepository;
 
     @Override
     public List<User> list() {
@@ -81,6 +77,7 @@ public class UserServiceImpl implements UserService {
         User user = userRepository.findById(userId).orElseThrow(() -> new RuntimeException("해당 유저가 없습니다"));
         List<Bookmarks> bookmarksList = bookmarksRepository.findAllByUser(user);
         List<MyPageAttractionDto> list = new ArrayList<>();
+
         // 북마크 마다 attractionId가 있는데 그걸로 attractionInfo에서 뒤져서 정보 가져오기.
         for (Bookmarks bookmarks : bookmarksList) {
             int attractionId = bookmarks.getAttractionId();
@@ -88,7 +85,6 @@ public class UserServiceImpl implements UserService {
             MyPageAttractionDto myPageAttractionDto = new MyPageAttractionDto(attraction.getAttractionId(),attraction.getTitle(), attraction.getFirstImage());
             list.add(myPageAttractionDto);
         }
-        dto.setBookMarkAttractionList(list);
 
         // 좋아요 게시글 가져오기
         List<Article> favoriteArticleList = heartRepository
@@ -98,7 +94,18 @@ public class UserServiceImpl implements UserService {
                 .map(heart -> heart.getArticle())
                 .collect(Collectors.toList());
 
+        // 내가 쓴 게시글 가져오기
+        List<Article> allByUser = articleRepository.findAllByUser(user);
+
+        // 내가 쓴 댓글 가져오기
+        List<ArticleComment> articleCommentList = articleCommentRepository.findAllByUserId(userId);
+
+        // 넣기
+        dto.setBookMarkAttractionList(list);
         dto.setMyPageArticleList(favoriteArticleList);
+        dto.setMyPageWriteArticleList(allByUser);
+        dto.setMyPageCommentList(articleCommentList);
+
         return dto;
     }
 

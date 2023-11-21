@@ -16,9 +16,5 @@ public interface ArticleService {
 	String insert(ArticleDto dto, MultipartHttpServletRequest request);
 	List<Article> findByTitleLike(String keyword);
 	void deleteById(int articleId);
-
-	void increaseHeartCount(int articleId);
-	void decreaseHeartCount(int articleId);
-
 	
 }
