@@ -29,9 +29,9 @@ public class ArticleComment {
     @Column(name = "comment")
     private String comment;
 
-    @ManyToOne
     @JoinColumn(name="user_id")
-    @OnDelete(action= OnDeleteAction.CASCADE)
+    @ManyToOne
+    @OnDelete(action=OnDeleteAction.CASCADE)
     private User user;
 
     @Column(name="comment_register_time")
