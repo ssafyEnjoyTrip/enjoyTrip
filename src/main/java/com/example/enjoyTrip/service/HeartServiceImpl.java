@@ -69,9 +69,6 @@ public class HeartServiceImpl implements HeartService{
         else return false;
     }
 
-
-
-
     public User getUser() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         int userId = ((PrincipalDetails) authentication.getPrincipal()).getUserId(); // 현재 로그인한 회원 id
