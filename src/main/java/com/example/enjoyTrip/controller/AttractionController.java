@@ -30,7 +30,6 @@ public class AttractionController {
 
     @GetMapping
     public AttractionResultDto attractionList(AttractionParamDto attractionParamDto){
-
         if( attractionParamDto.getSearchWord() != null ) {
             return attractionService.findByTitleLike(attractionParamDto);
         }else {
