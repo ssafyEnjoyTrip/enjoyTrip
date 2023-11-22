@@ -37,8 +37,6 @@ public class AttractionServiceImpl implements AttractionService{
 
             Page<AttractionInfo> attractionPage = attractionInfoRepository.findAll(pageable);
             List<AttractionInfo> content = attractionPage.getContent();
-
-
             int count = (int) attractionRepository.count();
             dto.setList(content);
             dto.setCount(count);
