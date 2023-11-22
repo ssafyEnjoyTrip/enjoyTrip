@@ -23,17 +23,17 @@ public interface ArticleRepository extends JpaRepository<Article, Integer>{
 	// 검색어(searchWord)에 맞춰서 페이징 처리된 게시글 목록을 가져오는 쿼리
 	@Query(value = "SELECT a FROM Article a WHERE " +
 			"(:searchWord IS NULL OR a.title LIKE %:searchWord% OR a.content LIKE %:searchWord%)")
-	Page<Article> findBySearchWord(String searchWord, Pageable pageable);
+	Page<Article> findBySearchWord(@Param("searchWord") String searchWord, Pageable pageable);
 
 
 	@Modifying
 	@Transactional
 	@Query("UPDATE Article a SET a.heartCount = a.heartCount + 1 WHERE a.articleId = :articleId")
-	void incrementHeartCount(int articleId);
+	void incrementHeartCount(@Param ("articleId") int articleId);
 
 	@Modifying
 	@Transactional
 	@Query("UPDATE Article a SET a.heartCount = a.heartCount - 1 WHERE a.articleId = :articleId AND a.heartCount > 0")
-	void decrementHeartCount(int articleId);
+	void decrementHeartCount(@Param ("articleId") int articleId);
 
 }

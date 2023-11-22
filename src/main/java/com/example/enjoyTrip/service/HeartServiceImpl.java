@@ -51,7 +51,6 @@ public class HeartServiceImpl implements HeartService{
 
         Heart heart = heartRepository.findByUserAndArticle(user, article);
         if( heart != null){ // heart가 있으면 지우자
-
             // count 1감소
             articleRepository.decrementHeartCount(articleId);
             heartRepository.delete(heart);
