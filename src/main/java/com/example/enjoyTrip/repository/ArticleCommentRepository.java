@@ -11,6 +11,5 @@ import java.util.List;
 
 public interface ArticleCommentRepository extends JpaRepository<ArticleComment, Integer> {
     List<ArticleComment> findByArticleArticleId(int articleId);
-
     List<ArticleComment> findAllByUserUserId(int userId);
 }
