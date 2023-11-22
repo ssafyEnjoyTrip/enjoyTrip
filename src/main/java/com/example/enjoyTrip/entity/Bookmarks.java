@@ -2,12 +2,7 @@ package com.example.enjoyTrip.entity;
 
 import javax.persistence.*;
 
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
@@ -21,6 +16,7 @@ import java.util.Objects;
 @AllArgsConstructor
 @ToString
 @EqualsAndHashCode
+@Builder
 //마이페이지
 //user_id로 북마크 한것들 불러오기.
 //불러오면 attraction_id로 조회해서 뿌려주기.

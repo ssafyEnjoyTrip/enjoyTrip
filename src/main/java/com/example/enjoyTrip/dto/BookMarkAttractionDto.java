@@ -1,15 +1,20 @@
 package com.example.enjoyTrip.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import com.example.enjoyTrip.entity.Bookmarks;
+import lombok.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
+@ToString
 public class BookMarkAttractionDto {
-
     private int attractionId;
+    private int userId;
+    List<Bookmarks> bookmarks;
+
 }
