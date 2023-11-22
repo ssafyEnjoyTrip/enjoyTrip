@@ -21,6 +21,4 @@ public interface AttractionInfoRepository extends JpaRepository<AttractionInfo, 
 
     @Query(value="SELECT * FROM attraction_info  order by RAND() LIMIT 6", nativeQuery = true)
     List<AttractionInfo> randomRecommendAttraction();
-
-
 }

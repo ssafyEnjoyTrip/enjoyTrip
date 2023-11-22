@@ -54,7 +54,6 @@ public class ArticleController {
 	@DeleteMapping("/{articleId}")
 	public void delete(@PathVariable int articleId) {
 		articleService.deleteById(articleId);
-		System.out.println("삭제되었나요");
 	}
 	
 //	@PostMapping("/{keyword}")
