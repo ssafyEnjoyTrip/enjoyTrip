@@ -35,7 +35,10 @@ public interface ArticleRepository extends JpaRepository<Article, Integer>{
 	@Transactional
 	@Query("UPDATE Article a SET a.heartCount = a.heartCount - 1 WHERE a.articleId = :articleId AND a.heartCount > 0")
 	void decrementHeartCount(@Param ("articleId") int articleId);
-	
-	
 	Page<Article> findAllByOrderByRegisterTimeDesc(Pageable pageable);
+
+	@Modifying
+	@Transactional
+	@Query("UPDATE Article AS c SET c.title = :title , c.content = :content where c.articleId = :articleId")
+	void updateTitleAndContent(@Param("title") String title, @Param("content") String content, @Param("articleId") int articleId);
 }

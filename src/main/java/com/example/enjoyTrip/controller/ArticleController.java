@@ -34,10 +34,8 @@ public class ArticleController {
 	public ArticleResultDto list(ArticleParamDto articleParamDto){
 		System.out.println(articleParamDto);
 		if( articleParamDto.getSearchWord() != "" ) {
-			System.out.println("titleLike@%%%%%%%%%%%%%%%%%%%%%%@@@@@@@@@@@@@@@@@@@@@@@");
 			return articleService.findByTitleLike(articleParamDto);
 		}else {
-			System.out.println("여기서 order by RegisterTime이 되어야 하는데...");
 			return articleService.findAll(articleParamDto);
 		}
 
@@ -52,16 +50,16 @@ public class ArticleController {
 	public String insert(ArticleDto dto, MultipartHttpServletRequest request) {
 		return articleService.insert(dto, request);
 	}
-	
 	@DeleteMapping("/{articleId}")
 	public void delete(@PathVariable int articleId) {
 		articleService.deleteById(articleId);
 	}
-	
-//	@PostMapping("/{keyword}")
-//	public List<Article> search(@PathVariable String keyword){
-//		return articleService.findByTitleLike(keyword);
-//	}
+
+
+	@PostMapping("/update")
+	public void update(ArticleDto articleDto){
+		articleService.update(articleDto);
+	}
 }
 
 

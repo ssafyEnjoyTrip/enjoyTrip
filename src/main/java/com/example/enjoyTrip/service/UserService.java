@@ -19,4 +19,5 @@ public interface UserService {
     String checkPassword(UserDto dto);
     String delete(int userId);
 
+    int getUserId();
 }

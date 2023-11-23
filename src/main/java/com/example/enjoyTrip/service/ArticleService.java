@@ -14,5 +14,6 @@ public interface ArticleService {
 	Article detail(int articleId);
 	String insert(ArticleDto dto, MultipartHttpServletRequest request);
 	void deleteById(int articleId);
+	void update(ArticleDto articleDto);
 	
 }

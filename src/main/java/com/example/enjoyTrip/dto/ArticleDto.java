@@ -21,6 +21,5 @@ public class ArticleDto {
 	private Timestamp registerTime;
 	private int commentsCount;
 	private String content;
-
 	private List<ArticleFileDto> fileList;
 }

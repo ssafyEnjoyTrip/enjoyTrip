@@ -184,7 +184,13 @@ public class ArticleServiceImpl implements ArticleService{
 	@Override
 	public void deleteById(int articleId) {
 		articleRepository.deleteById(articleId);
-		
+	}
+
+	@Override
+	public void update(ArticleDto articleDto) {
+		articleRepository.updateTitleAndContent(articleDto.getTitle(),
+				articleDto.getContent(), articleDto.getArticleId());
+
 	}
 
 	public User getUser() {

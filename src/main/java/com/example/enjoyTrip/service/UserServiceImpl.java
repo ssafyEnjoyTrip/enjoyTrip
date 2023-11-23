@@ -1,5 +1,6 @@
 package com.example.enjoyTrip.service;
 
+import com.example.enjoyTrip.config.auth.PrincipalDetails;
 import com.example.enjoyTrip.dto.MyPageAttractionDto;
 import com.example.enjoyTrip.dto.MyPageResultDto;
 import com.example.enjoyTrip.dto.UserDto;
@@ -8,6 +9,8 @@ import com.example.enjoyTrip.repository.*;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -145,6 +148,15 @@ public class UserServiceImpl implements UserService {
         }
     }
 
+    public int getUserId() {
+        try{
+            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+            int userId = ((PrincipalDetails) authentication.getPrincipal()).getUserId(); // 현재 로그인한 회원 id
+            return userId;
+        } catch(Exception e){
+            return 0;
+        }
+    }
 
     public static boolean isSamePassword(String rawPassword, String encodedPassword) {
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
