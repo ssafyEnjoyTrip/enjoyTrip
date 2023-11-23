@@ -55,9 +55,9 @@ public class ArticleController {
 		articleService.deleteById(articleId);
 	}
 
-
 	@PostMapping("/update")
-	public void update(ArticleDto articleDto){
+	public void update(@RequestBody ArticleDto articleDto){
+		System.out.println(articleDto);
 		articleService.update(articleDto);
 	}
 }
