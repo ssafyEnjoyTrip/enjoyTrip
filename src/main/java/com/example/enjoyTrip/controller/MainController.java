@@ -21,9 +21,9 @@ public class MainController {
 	private final BCryptPasswordEncoder bCryptPasswordEncoder; // 비밀번호 암호화
 	@GetMapping("/")
 	public String main() {
-
 		return "index.html";
 	}
+	
 	@GetMapping("/logoutSuccess")
 	@ResponseBody
 	public String logoutSuccess(){
