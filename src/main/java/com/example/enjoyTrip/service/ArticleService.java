@@ -11,12 +11,8 @@ import java.util.List;
 public interface ArticleService {
 	ArticleResultDto findAll(ArticleParamDto articleParamDto);
 	ArticleResultDto findByTitleLike(ArticleParamDto articleParamDto);
-
 	Article detail(int articleId);
 	String insert(ArticleDto dto, MultipartHttpServletRequest request);
-
 	void deleteById(int articleId);
-
-
 	
 }

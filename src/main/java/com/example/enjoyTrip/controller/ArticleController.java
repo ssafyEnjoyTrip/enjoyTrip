@@ -32,10 +32,12 @@ public class ArticleController {
 	
 	@GetMapping
 	public ArticleResultDto list(ArticleParamDto articleParamDto){
-
-		if( articleParamDto.getSearchWord() != null ) {
+		System.out.println(articleParamDto);
+		if( articleParamDto.getSearchWord() != "" ) {
+			System.out.println("titleLike@%%%%%%%%%%%%%%%%%%%%%%@@@@@@@@@@@@@@@@@@@@@@@");
 			return articleService.findByTitleLike(articleParamDto);
 		}else {
+			System.out.println("여기서 order by RegisterTime이 되어야 하는데...");
 			return articleService.findAll(articleParamDto);
 		}
 
