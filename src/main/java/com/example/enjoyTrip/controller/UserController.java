@@ -51,6 +51,10 @@ public class UserController {
 		return service.delete(userId);
 	}
 
-	
+	@GetMapping("/check")
+	@ResponseBody
+	public int check(){
+		return service.getUserId();
+	}
 	
 }
