@@ -57,7 +57,7 @@ public class ArticleServiceImpl implements ArticleService{
 			int page = articleParamDto.getOffset() / articleParamDto.getLimit();
 			Pageable pageable = PageRequest.of(page, articleParamDto.getLimit());
 
-			Page<Article> articlePage = articleRepository.findAll(pageable);
+			Page<Article> articlePage = articleRepository.findAllByOrderByRegisterTimeDesc(pageable);
 			List<Article> content = articlePage.getContent();
 
 			int count = (int) articleRepository.count();

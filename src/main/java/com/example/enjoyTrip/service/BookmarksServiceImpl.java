@@ -32,9 +32,7 @@ public class BookmarksServiceImpl implements BookmarksService{
         }
         return dto;
     }
-
-
-
+    
     @Override
     public void save(BookMarkAttractionDto dto) {
         Bookmarks bookmarks =   Bookmarks.builder()
