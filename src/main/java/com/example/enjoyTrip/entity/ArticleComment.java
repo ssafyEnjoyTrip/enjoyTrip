@@ -18,19 +18,19 @@ import java.util.Objects;
 @ToString
 @EqualsAndHashCode
 @Builder
-@javax.persistence.Table(name = "article_comment", schema = "enjoytrip", catalog = "")
+@Table(name = "article_comment")
 public class ArticleComment {
 
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @javax.persistence.Column(name = "comment_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "comment_id")
     private int commentId;
 
     @Column(name = "comment")
     private String comment;
 
-    @JoinColumn(name="user_id")
     @ManyToOne
+    @JoinColumn(name="user_id")
     @OnDelete(action=OnDeleteAction.CASCADE)
     private User user;
 
