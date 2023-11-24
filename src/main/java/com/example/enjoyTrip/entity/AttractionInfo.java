@@ -20,11 +20,11 @@ import java.util.Objects;
 @AllArgsConstructor
 @ToString
 @EqualsAndHashCode
-@javax.persistence.Table(name = "attraction_info", schema = "enjoytrip", catalog = "")
+@Table(name = "attraction_info")
 public class AttractionInfo {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @javax.persistence.Column(name = "attraction_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "attraction_id")
     private int attractionId;
 
     @Column(name = "content_type_id")

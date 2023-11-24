@@ -75,6 +75,8 @@ public class ArticleServiceImpl implements ArticleService{
 
 	@Override
 	public Article detail(int articleId) {
+
+
 		return articleRepository.findById(articleId).orElse(null);
 	}
 
