@@ -39,12 +39,6 @@ public class UserController {
 		return service.checkPassword(user);
 	}
 
-	@GetMapping("/search/{keyword}")
-	@ResponseBody
-	public List<User> search(@PathVariable String keyword){
-		return service.findByNameLike("%" + keyword + "%");
-	}
-
 	@DeleteMapping("/{userId}")
 	@ResponseBody
 	public String delete(@PathVariable int userId) {
