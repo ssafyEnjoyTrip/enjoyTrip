@@ -23,9 +23,10 @@ import org.hibernate.annotations.CreationTimestamp;
 @ToString
 @EqualsAndHashCode
 public class Article {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     @Id
-    @javax.persistence.Column(name = "article_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "article_id")
     private int articleId;
     
     @Column(name = "title", nullable = false)
